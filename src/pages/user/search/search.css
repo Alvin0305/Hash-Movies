@@ -1,0 +1,36 @@
+.search-page {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.search-bar-form {
+    width: 40%;
+}
+
+.search-bar-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid gray;
+    border-radius: 30px;
+}
+
+.search-icon {
+    padding: 16px 20px;
+    border-radius: 32px;
+}
+
+.search-icon:hover {
+    background-color: #171717;
+}
+
+.search-bar {
+    padding: 20px;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    font-size: medium;
+}

@@ -1,0 +1,58 @@
+.loading-page {
+    display: flex;
+    flex-direction: column;
+}
+
+.loading-horizontal-div {
+    display: flex;
+    margin: 20px;
+}
+
+.loading-long-div {
+    background-color: #242424;
+    height: 50px;
+    width: 600px;
+    margin: 20px;
+    border-radius: 20px;
+}
+
+.loading-longer-div {
+    background-color: #242424;
+    height: 50px;
+    width: 800px;
+    margin: 20px;
+    border-radius: 20px;
+}
+
+.loading-sharper-div {
+    background-color: #242424;
+    height: 25px;
+    width: 800px;
+    margin: 20px;
+    border-radius: 20px;
+}
+
+.loading-small-div {
+    background-color: #242424;
+    height: 100px;
+    width: 100px;
+    margin: 20px;
+    border-radius: 20px;
+}
+
+
+.loading-medium-div {
+    background-color: #242424;
+    height: 150px;
+    width: 150px;
+    margin: 20px;
+    border-radius: 20px;
+}
+
+.loading-large-div {
+    background-color: #242424;
+    height: 200px;
+    width: 200px;
+    margin: 20px;
+    border-radius: 20px;
+}

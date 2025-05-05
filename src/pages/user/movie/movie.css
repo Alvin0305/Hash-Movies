@@ -1,0 +1,154 @@
+.movie-page {
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+}
+
+.movie-page-image {
+    width: 300px;
+}
+
+.movie-page-side-bar {
+    width: 300px;
+    border-right: 1px solid gray;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    padding: 0px 40px;
+    /* flex-shrink: 0; */
+}
+
+.movie-page-sidebar-details {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 10px 0px;
+}
+
+.movie-page-sidebar-detail {
+    margin: 0px;
+}
+
+.movie-page-sidebar-certificate {
+    background-color: #454545;
+    border-radius: 5px;
+    padding: 2px 10px;
+}
+
+.movie-page-storyline {
+    margin-top: 8px;
+    margin-bottom: 4px;
+}
+
+.movie-page-genres-div {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.movie-page-rating-div {
+    display: flex;
+    width: 100%;
+    margin-bottom: 10px;
+    justify-content: center;
+}
+
+.movie-page-sidebar-genre {
+    margin: 5px;
+    margin-right: 0px;
+}
+
+.movie-page-sidebar-buttons {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.movie-page-sidebar-button {
+    background-color: transparent;
+    border-radius: 10px;
+    padding: 10px;
+    border: none;
+    color: white;
+    font-family: Hanuman, 'Serif';
+}
+
+.movie-page-like-button {
+    padding: 10px 25px;
+}
+
+.movie-page-sidebar-button:hover {
+    background-color: #454545;
+}
+
+.movie-page-sidebar-button-text {
+    margin: 0;
+}
+
+.movie-page-content {
+    margin: 20px;
+    overflow-y: auto;
+    flex: 1 1 auto;
+    /* flex-grow: 1; */
+    min-height: 0;
+    max-height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.selected-star {
+    color: yellow;
+}
+
+.unselected-star {
+    color: #454545;
+}
+
+.movie-page-sidebar-back-button {
+    background-color: transparent;
+    border: none;
+    padding: 10px;
+    padding-right: 15px;
+    border-radius: 10px;
+}
+
+.movie-page-sidebar-back-button:hover {
+    background-color: #454545;
+}
+
+@media (max-width: 568px) {
+
+    .movie-page {
+        flex-direction: column;
+        overflow-y: auto;
+        overflow-x: visible;
+        overflow: auto;
+    }
+
+    .movie-page-content {
+        overflow: visible;
+    }
+
+    .movie-page-sidebar-back-button {
+        align-self: flex-start;
+    }
+
+    .movie-page-sidebar-buttons {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .movie-page-side-bar {
+        border-right: none;
+        border-bottom: 1px solid gray;
+        width: 90%;
+        margin: 20px;
+        padding: 0;
+        align-items: center;
+    }
+}

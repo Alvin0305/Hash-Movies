@@ -1,0 +1,204 @@
+.user-page-wrapper {
+    padding: 10px;
+}
+
+.user-page-image-and-username {
+    display: flex;
+    align-items: center;
+}
+
+.user-page-top {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    padding-bottom: 0px;
+}
+
+.user-page-text {
+    margin: 0px;
+    margin-bottom: 10px;
+}
+
+.user-page-details {
+    margin-right: 40px;
+    display: flex;
+}
+
+.user-page-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+}
+
+.user-page-detail-value {
+    margin: 0;
+}
+
+.user-page-bottom {
+    padding: 20px;
+    padding-top: 0px;
+    margin-top: 0px;
+}
+
+.user-page-bottom-heading {
+    margin: 0;
+    margin-top: 10px;
+}
+
+.user-page-field {
+    background-color: #171717;
+    border: none;
+    border-bottom: 1px solid gray;
+    width: 300px;
+    height: 40px;
+    margin-bottom: 20px;
+    color: white;
+    padding: 0px;
+    font-size: medium;
+}
+
+.user-page-avatar {
+    width: 150px;
+}
+
+.user-page-username {
+    margin-left: 40px;
+    font-size: 60px;
+}
+
+.user-page-content {
+    padding: 20px;
+    display: flex;
+    padding-bottom: 0px;
+}
+
+.user-page-save-button {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: medium;
+    background-color: green;
+    color: white;
+    border: none;
+    margin-right: 70px;
+}
+
+.user-page-save-button:hover {
+    background-color: #550;
+}
+
+.user-page-left-div, .user-page-right-div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.language-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid gray;
+    border-radius: 20px;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.language-button:hover {
+    background-color: #777700;
+}
+
+.selected-language-button {
+    background-color: green;
+}
+
+.language-text {
+    margin: 0px;
+    margin-left: 10px;
+}
+
+.user-page-languages {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.user-page-genres {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.user-page-buttons {
+    display: flex;
+    margin-top: 10px;
+    justify-content: right;
+    padding-right: 30px;
+}
+
+.user-page-button {
+    padding: 20px 30px;
+    background-color: #CC5C00;
+    color: white;
+    border: none;
+    margin: 10px;
+    margin-right: 20px;
+    margin-left: 0px;
+    border-radius: 5px;
+    font-size: large;
+}
+
+.user-page-button:hover {
+    background-color: #AA3A00;
+}
+
+.user-page-save-wrapper {
+    display: flex;
+    justify-content: right;
+}
+
+.user-page-movies-div {
+    padding: 20px;
+    padding-top: 0px;
+}
+
+.user-page-movie-heading {
+    margin: 0px;
+    margin-bottom: 5px;
+}
+
+@media (max-width: 750px) {
+    .user-page-details {
+        display: none;
+    }
+
+    .user-page-content {
+        flex-direction: column;
+    }
+
+    .user-page-image-and-username {
+        flex-direction: column;
+    }
+
+    .user-page-top {
+        justify-content: center;
+    }
+
+    .user-page-username {
+        margin: 0;
+    }
+
+    .user-page-field {
+        width: 100%;
+    }
+
+    .user-page-text {
+        display: none;
+    }
+
+    .user-page-buttons {
+        flex-wrap: wrap;
+    }
+
+    .user-page-button {
+        width: 100%;
+    }
+}
