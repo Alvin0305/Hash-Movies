@@ -1,0 +1,53 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.sortable-table-head {
+    cursor: pointer;
+}
+
+.table-head {
+    font-weight: bold;
+    text-align: left;
+    font-size: 20px;
+    padding: 10px;
+    margin: 0;
+}
+
+.table-row {
+    border-bottom: 1px solid gray;
+}
+
+.table-data {
+    padding: 10px;
+    margin: 0;
+    border-bottom: 1px solid gray;
+}
+
+.table-button {
+    padding: 5px 10px;
+    color: white;
+    font-family: Hanuman, 'Serif';
+    border: none;
+    border-radius: 5px;
+    font-size: medium;
+    cursor: pointer;
+}
+
+.table-update-button {
+    background-color: blue;
+}
+
+.table-update-button:hover {
+    background-color: #025;
+}
+
+.table-delete-button {
+    background-color: red;
+}
+
+.table-delete-button:hover {
+    background-color: #520;
+}

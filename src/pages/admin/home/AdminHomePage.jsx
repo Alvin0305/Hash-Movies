@@ -1,11 +1,12 @@
 import React from 'react'
-import Users from './components/Users'
+import Users from '../user/Users'
+import Movies from '../movie/Movies'
 
 const AdminHomePage = () => {
   return (
     <div>
-      AdminHomePage
       <Users />
+      <Movies />
     </div>
   )
 }

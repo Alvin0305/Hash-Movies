@@ -15,7 +15,8 @@ exports.registerUser = async (req, res) => {
 
     const user = new User(req.body);
     await user.save();
-    res.status(201).json({ message: "User registered succesfully" });
+    const newUser = await User.findOne({ email: req.body.email });
+    res.status(201).json({ user: newUser });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }

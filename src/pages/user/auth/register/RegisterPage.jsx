@@ -19,6 +19,7 @@ const RegisterPage = () => {
         password: password,
       };
       const responce = await api.register(credentials);
+      console.log(responce);
       console.log("Registration successful", responce.data.user);
       navigate("/home", { state: { user: responce.data.user } });
     } catch (err) {

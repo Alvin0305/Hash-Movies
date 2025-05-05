@@ -13,6 +13,7 @@ import LikedPage from "./pages/user/liked/LikedPage";
 import ViewedPage from "./pages/user/viewed/ViewedPage";
 import WatchListPage from "./pages/user/watchlist/WatchListPage";
 import SearchPage from "./pages/user/search/SearchPage";
+import UpdateMovie from "./pages/admin/movie/update/UpdateMovie";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/home/viewed" element={<ViewedPage />} />
           <Route path="/home/watchList" element={<WatchListPage />} />
           <Route path="/home/search" element={<SearchPage />} />
+          <Route path="/admin/movie/update" element={<UpdateMovie />}/>
         </Routes>
       </Router>
     </AuthProvider>
