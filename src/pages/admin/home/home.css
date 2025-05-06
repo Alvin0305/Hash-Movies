@@ -1,6 +1,5 @@
 table {
     border-collapse: collapse;
-    width: 100%;
     overflow-x: auto;
 }
 
@@ -50,4 +49,32 @@ table {
 
 .table-delete-button:hover {
     background-color: #520;
+}
+
+.genre-table {
+    border-collapse: collapse;
+
+}
+
+.admin-add-button {
+    background-color: transparent;
+    border: 2px solid green;
+    color: green;
+    border-radius: 40px;
+    padding: 5px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
+    margin-top: 10px;
+    justify-self: start;
+    cursor: pointer;
+}
+
+.admin-add-button:hover {
+    background-color: green;
+    color: #111;
+    transform: scale(1.1);
 }

@@ -51,7 +51,10 @@ const Users = () => {
           <tr className="table-row">
             <th className="table-head">#</th>
             <th className="table-head">ID</th>
-            <th className="table-head sortable-table-head" onClick={() => handleSort("username")}>
+            <th
+              className="table-head sortable-table-head"
+              onClick={() => handleSort("username")}
+            >
               UserName{" "}
               {sortConfig.key === "username"
                 ? sortConfig.direction === "asc"
@@ -59,7 +62,10 @@ const Users = () => {
                   : "▼"
                 : ""}
             </th>
-            <th className="table-head sortable-table-head" onClick={() => handleSort("email")}>
+            <th
+              className="table-head sortable-table-head"
+              onClick={() => handleSort("email")}
+            >
               Email{" "}
               {sortConfig.key === "email"
                 ? sortConfig.direction === "asc"
@@ -67,7 +73,10 @@ const Users = () => {
                   : "▼"
                 : ""}
             </th>
-            <th className="table-head sortable-table-head" onClick={() => handleSort("gender")}>
+            <th
+              className="table-head sortable-table-head"
+              onClick={() => handleSort("gender")}
+            >
               Gender{" "}
               {sortConfig.key === "gender"
                 ? sortConfig.direction === "asc"
@@ -75,7 +84,10 @@ const Users = () => {
                   : "▼"
                 : ""}
             </th>
-            <th className="table-head sortable-table-head" onClick={() => handleSort("createdAt")}>
+            <th
+              className="table-head sortable-table-head"
+              onClick={() => handleSort("createdAt")}
+            >
               Created At{" "}
               {sortConfig.key === "createdAt"
                 ? sortConfig.direction === "asc"
@@ -83,7 +95,10 @@ const Users = () => {
                   : "▼"
                 : ""}
             </th>
-            <th className="table-head sortable-table-head" onClick={() => handleSort("updatedAt")}>
+            <th
+              className="table-head sortable-table-head"
+              onClick={() => handleSort("updatedAt")}
+            >
               Last Update{" "}
               {sortConfig.key === "updatedAt"
                 ? sortConfig.direction === "asc"

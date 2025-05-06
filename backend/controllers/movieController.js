@@ -5,7 +5,8 @@ const Actor = require("../models/Actor");
 
 exports.getAllMovies = async (req, res) => {
   try {
-    const { isFeatured, isTrending, genre, actor, platform, title, language } = req.query;
+    const { isFeatured, isTrending, genre, actor, platform, title, language } =
+      req.query;
     const filter = {};
 
     if (isTrending) filter.isTrending = isTrending === "true";
@@ -44,24 +45,53 @@ exports.getMovieByGenre = async (req, res) => {
 
 exports.createMovie = async (req, res) => {
   try {
-    const movie = new Movie(req.body);
-    await movie.save();
+    const movieData = {
+      title: req.body.title,
+      director: req.body.director,
+      releaseDate: req.body.releaseDate,
+      genres: JSON.parse(req.body.genres || '[]'),
+      actors: JSON.parse(req.body.actors || '[]'),
+      duration: req.body.duration, 
+      storyline: req.body.storyline,
+      language: req.body.language,
+      certificate: req.body.certificate,
+      likes: req.body.likes, 
+      platforms: JSON.parse(req.body.platforms || '[]'),
+      trailer: req.body.trailer,
+      isFeatured: req.body.isFeatured, 
+      isTrending: req.body.isTrending  
+    };
 
-    if (movie.actors && movie.actors.length > 0) {
+    if (req.file) {
+      movieData.image = `/uploads/${req.file.filename}`;
+    } else {
+      // Optional: set a default image if none is uploaded
+      // movieData.image = '/uploads/default-movie.png';
+    }
+
+    const movie = new Movie(movieData);
+    await movie.save();
+    
+    if (movieData.actors && movieData.actors.length > 0) {
       await Actor.updateMany(
-        { _id: { $in: req.body.actors } },
+        { _id: { $in: movieData.actors } }, 
         { $addToSet: { films: movie._id } }
       );
     }
 
-    if (movie.genres && movie.genres.length > 0) {
+    if (movieData.genres && movieData.genres.length > 0) {
       await Genre.updateMany(
-        { _id: { $in: req.body.genres } },
+        { _id: { $in: movieData.genres } },
         { $addToSet: { movies: movie._id } }
       );
     }
+
     res.status(201).json(movie);
   } catch (err) {
+    console.error("Full error in createMovie:", err);
+    if (err.name === 'ValidationError') {
+      return res.status(400).json({ error: err.message, details: err.errors });
+    }
     res.status(500).json({ error: err.message });
   }
 };

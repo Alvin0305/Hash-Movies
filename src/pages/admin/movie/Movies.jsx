@@ -35,7 +35,6 @@ const Movies = () => {
     const fetchMovies = async () => {
       try {
         const response = await api.fetchMovies();
-        console.log(response.data);
         setMovies(response.data);
       } catch (err) {
         console.log("movie fetch error: ", err.message);
@@ -44,9 +43,23 @@ const Movies = () => {
     fetchMovies();
   }, []);
 
+  const deleteMovie = (movie) => {
+    setMovies(movies.filter((mov) => movie._id !== mov._id));
+
+    const deleteMov = async () => {
+      try {
+        const response = await api.deleteMovie(movie._id);
+      } catch (err) {
+        console.log("delete movie error", err.message);
+      }
+    };
+
+    deleteMov();
+  };
+
   return (
     <div>
-      <table>
+      <table className="general-table">
         <thead>
           <tr>
             <th className="table-head">#</th>
@@ -153,7 +166,6 @@ const Movies = () => {
         </thead>
         <tbody>
           {sortedMovies.map((movie, index) => {
-            console.log("movie", movie);
             return (
               <tr key={index}>
                 <td className="table-data">{index + 1}</td>
@@ -181,7 +193,10 @@ const Movies = () => {
                   </button>
                 </td>
                 <td className="table-data">
-                  <button className="table-button table-delete-button">
+                  <button
+                    className="table-button table-delete-button"
+                    onClick={() => deleteMovie(movie)}
+                  >
                     Delete
                   </button>
                 </td>
@@ -190,6 +205,9 @@ const Movies = () => {
           })}
         </tbody>
       </table>
+      <a href="/admin/movie/add">
+        <button className="admin-add-button">+</button>
+      </a>
     </div>
   );
 };

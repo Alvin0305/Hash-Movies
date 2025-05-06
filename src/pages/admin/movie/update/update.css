@@ -1,0 +1,176 @@
+.update-movie-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    min-height: 100vh;
+    width: 100vw;
+}
+
+.update-movie-page-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.update-movie-image-div {
+    padding: 20px;
+    border-right: 1px solid gray;
+}
+
+.update-movie-content-wrapper {
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.update-movie-content {
+    display: flex;
+    width: 100%;
+}
+
+.update-movie-left-div, .update-movie-right-div {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.update-movie-left-div {
+    margin-right: 40px;
+}
+
+.update-movie-field {
+    border: none;
+    border-bottom: 1px solid gray;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+    color: white;
+    padding: 0px;
+    /* padding-left: 5px; */
+    font-size: medium;
+    background-color: transparent;
+    font-family: Hanuman, 'Serif';
+}
+
+.update-movie-checkbox {
+    width: auto;
+    align-self: flex-start;
+    margin: 0;
+    width: 20px;
+    margin-right: 10px;
+}
+
+.update-movie-label-div {
+    display: flex;
+    align-items: center;
+}
+
+.update-movie-buttons {
+    align-self: flex-end;
+}
+
+.update-movie-cancel-button {
+    padding: 15px 15px;
+    background-color: #EE7000;
+    color: white;
+    font-size: medium;
+    width: 100px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 20px;
+}
+
+.update-movie-save-button {
+    padding: 15px 15px;
+    background-color: green;
+    color: white;
+    font-size: medium;
+    width: 100px;
+    border: none;
+    border-radius: 5px;
+}
+
+.update-movie-save-button:hover {
+    transform: scale(1.05);
+}
+
+select option {
+    background-color: #222;
+    padding: 20px;
+}
+
+.update-movie-bottom-div {
+    padding-top: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.update-movie-bottom-label-div {
+    display: flex;
+    flex-direction: column;
+}
+
+.update-movie-storyline-field {
+    width: 100%;
+    height: 100px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+    box-sizing: border-box;
+}
+
+.update-movie-trailer-field {
+    width: 100%;
+}
+
+.update-movie-genres {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 568px) {
+    .update-movie-image-div {
+        border-right: none;
+        border-bottom: 1px solid gray;
+    }
+
+    .update-movie-field {
+        width: 100%;
+    }
+
+    .update-movie-checkbox {
+        margin-right: 20px;
+        width: 20px;
+        padding: 0;
+    }
+
+    .update-movie-checkbox-div {
+        margin-bottom: 10px;
+        align-self: self-start;
+    }
+
+    .update-movie-page-wrapper {
+        flex-direction: column;
+    }
+
+    .update-movie-left-div, .update-movie-right-div {
+        margin-right: 0;
+        width: 100%;
+    }
+
+    .update-movie-content {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .update-movie-storyline-field {
+        height: 200px;
+    }
+
+    .update-movie-image {
+        width: 200px;
+    }
+}

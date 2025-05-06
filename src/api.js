@@ -10,7 +10,12 @@ export const login = (credentials) => API.post("/auth/login", credentials);
 
 // Movies
 export const fetchMovies = (params = {}) => API.get("/movies", { params });
-export const createMovie = (movieData) => API.post("/movies", movieData);
+export const createMovie = (movieData) =>
+  API.post("/movies", movieData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
 export const updateMovie = (id, movieData) =>
   API.put(`/movies/${id}`, movieData);
 export const deleteMovie = (id) => API.delete(`/movies/${id}`);
@@ -21,7 +26,13 @@ export const createActor = (actorData) => API.post("/actors", actorData);
 
 // Genres
 export const fetchGenres = () => API.get("/genres");
-export const createGenre = (genreData) => API.post("/genres", genreData);
+export const createGenre = (genreData) =>
+  API.post("/genres", genreData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+export const deleteGenre = (id) => API.delete(`/genres/${id}`);
 
 // Platforms
 export const fetchPlatforms = () => API.get("/platforms");

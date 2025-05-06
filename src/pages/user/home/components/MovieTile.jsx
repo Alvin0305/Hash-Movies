@@ -10,7 +10,7 @@ const MovieTile = ({ movie }) => {
   return (
     <div className="movie-tile">
       <img
-        src={movie.image}
+        src={`/backend/${movie.image}`}
         alt="No internet"
         className="movie-tile-image"
         onClick={navigateToMovies}

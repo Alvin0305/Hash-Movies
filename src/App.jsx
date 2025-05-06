@@ -14,6 +14,8 @@ import ViewedPage from "./pages/user/viewed/ViewedPage";
 import WatchListPage from "./pages/user/watchlist/WatchListPage";
 import SearchPage from "./pages/user/search/SearchPage";
 import UpdateMovie from "./pages/admin/movie/update/UpdateMovie";
+import AddMovies from "./pages/admin/movie/add/AddMovies";
+import AddGenre from "./pages/admin/genres/add/AddGenre";
 
 function App() {
   return (
@@ -34,6 +36,8 @@ function App() {
           <Route path="/home/watchList" element={<WatchListPage />} />
           <Route path="/home/search" element={<SearchPage />} />
           <Route path="/admin/movie/update" element={<UpdateMovie />}/>
+          <Route path="/admin/movie/add" element={<AddMovies />}/>
+          <Route path="/admin/genre/add" element={<AddGenre />}/>
         </Routes>
       </Router>
     </AuthProvider>

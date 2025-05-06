@@ -47,7 +47,6 @@
 }
 
 .user-page-field {
-    background-color: #171717;
     border: none;
     border-bottom: 1px solid gray;
     width: 300px;
@@ -56,6 +55,8 @@
     color: white;
     padding: 0px;
     font-size: medium;
+    background-color: transparent;
+    font-family: Hanuman, 'Serif';
 }
 
 .user-page-avatar {
@@ -188,6 +189,7 @@
 
     .user-page-field {
         width: 100%;
+        
     }
 
     .user-page-text {

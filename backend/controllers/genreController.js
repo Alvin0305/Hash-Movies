@@ -7,7 +7,20 @@ exports.createGenre = async (req, res) => {
     const existingGenre = await Genre.findOne({ name });
     if (existingGenre)
       return res.status(400).json({ error: "Genre already exists" });
-    const genre = new Genre(req.body);
+
+    const genreData = {
+      name: req.body.name,
+      description: req.body.description,
+      movies: [],
+    };
+
+    if (req.file) {
+      genreData.image = `/uploads/${req.file.filename}`;
+    } else {
+      genreData.image = `/uploads/default-genre.jpeg`;
+    }
+
+    const genre = new Genre(genreData);
     await genre.save();
     res.status(201).json(genre);
   } catch (err) {
@@ -18,7 +31,8 @@ exports.createGenre = async (req, res) => {
 exports.getAllGenres = async (req, res) => {
   try {
     const genres = await Genre.find().populate("movies");
-    if (genres.length === 0) return res.status(404).json({ error: "No genres" });
+    if (genres.length === 0)
+      return res.status(404).json({ error: "No genres" });
     res.json(genres);
   } catch (err) {
     res.status(500).json({ error: err.message });
