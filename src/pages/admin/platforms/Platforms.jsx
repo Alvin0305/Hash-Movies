@@ -2,16 +2,16 @@ import React, { useState, useEffect, useMemo } from "react";
 import * as api from "../../../api";
 import { useNavigate } from "react-router-dom";
 
-const Genres = () => {
-  const [genres, setGenres] = useState([]);
+const Platforms = () => {
+  const [platforms, setPlatforms] = useState([]);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
 
   const navigate = useNavigate();
 
-  const sortedGenres = useMemo(() => {
-    let sortableGenres = [...genres];
+  const sortedPlatforms = useMemo(() => {
+    let sortablePlatforms = [...platforms];
     if (sortConfig.key !== null) {
-      sortableGenres.sort((a, b) => {
+      sortablePlatforms.sort((a, b) => {
         const aValue = a[sortConfig.key];
         const bValue = b[sortConfig.key];
 
@@ -21,8 +21,8 @@ const Genres = () => {
       });
     }
 
-    return sortableGenres;
-  }, [genres, sortConfig]);
+    return sortablePlatforms;
+  }, [platforms, sortConfig]);
 
   const handleSort = (key) => {
     let direction = "asc";
@@ -33,30 +33,30 @@ const Genres = () => {
   };
 
   useEffect(() => {
-    const fetchGenres = async () => {
+    const fetchPlatforms = async () => {
       try {
-        const response = await api.fetchGenres();
-        console.log(response.data);
-        setGenres(response.data);
+        const response = await api.fetchPlatforms();
+        console.log(response.data.platforms);
+        setPlatforms(response.data.platforms);
       } catch (err) {
-        console.log("genre error: ", err.message);
+        console.log("platform error: ", err.message);
       }
     };
-    fetchGenres();
+    fetchPlatforms();
   }, []);
 
-  const deleteGenre = (id) => {
-    const deleteGen = async () => {
+  const deletePlatform = (id) => {
+    const deletePlat = async () => {
       try {
-        const response = await api.deleteGenre(id);
+        const response = await api.deletePlatform(id);
         console.log(response.data);
-        setGenres(genres.filter((genre) => genre._id !== id));
+        setPlatforms(platforms.filter((platform) => platform._id !== id));
       } catch (err) {
         console.log("delete genre error: ", err.message);
       }
     };
 
-    deleteGen();
+    deletePlat();
   };
 
   return (
@@ -77,19 +77,33 @@ const Genres = () => {
                   : "▼"
                 : ""}
             </th>
+            <th
+              className="table-head sortable-table-head"
+              onClick={() => handleSort("link")}
+            >
+              Link
+              {sortConfig.key === "link"
+                ? sortConfig.direction === "asc"
+                  ? "▲"
+                  : "▼"
+                : ""}
+            </th>
           </tr>
         </thead>
         <tbody>
-          {sortedGenres.map((genre, index) => (
-            <tr key={genre._id} className="table-row">
+          {sortedPlatforms.map((platform, index) => (
+            <tr key={platform._id} className="table-row">
               <td className="table-data">{index + 1}</td>
-              <td className="table-data">{genre._id}</td>
-              <td className="table-data">{genre.name}</td>
+              <td className="table-data">{platform._id}</td>
+              <td className="table-data">{platform.name}</td>
+              <td className="table-data">{platform.link}</td>
               <td className="table-data">
                 <button
                   className="table-button table-update-button"
                   onClick={() =>
-                    navigate("/admin/genre/update", { state: { genre: genre } })
+                    navigate("/admin/platform/update", {
+                      state: { platform: platform },
+                    })
                   }
                 >
                   Update
@@ -98,7 +112,7 @@ const Genres = () => {
               <td className="table-data">
                 <button
                   className="table-button table-delete-button"
-                  onClick={() => deleteGenre(genre._id)}
+                  onClick={() => deletePlatform(platform._id)}
                 >
                   Delete
                 </button>
@@ -111,7 +125,7 @@ const Genres = () => {
         className="admin-add-button"
         onClick={(e) => {
           e.preventDefault();
-          navigate("/admin/genre/add");
+          navigate("/admin/platform/add");
         }}
       >
         +
@@ -120,4 +134,4 @@ const Genres = () => {
   );
 };
 
-export default Genres;
+export default Platforms;

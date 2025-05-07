@@ -1,0 +1,43 @@
+.update-genre-page-wrapper-div {
+    display: flex;
+    flex-direction: column;
+}
+
+.update-genre-tables {
+    display: flex;
+    justify-content: space-between;
+}
+
+.update-genre-table {
+    height: fit-content;
+}
+
+.update-genre-left-table {
+    margin-right: 20px;
+}
+
+.update-genre-right-table {
+    margin-left: 20px;
+}
+
+.update-genre-table-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+}
+
+.table-add-button {
+    background-color: green;
+}
+
+.update-genre-table-button:hover {
+    transform: scale(1.05);
+}
+
+.table-remove-button {
+    background-color: red;
+}

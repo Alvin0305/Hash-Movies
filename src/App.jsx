@@ -16,6 +16,9 @@ import SearchPage from "./pages/user/search/SearchPage";
 import UpdateMovie from "./pages/admin/movie/update/UpdateMovie";
 import AddMovies from "./pages/admin/movie/add/AddMovies";
 import AddGenre from "./pages/admin/genres/add/AddGenre";
+import UpdateGenre from "./pages/admin/genres/update/UpdateGenre";
+import AddPlatform from "./pages/admin/platforms/add/AddPlatform";
+import UpdatePlatform from "./pages/admin/platforms/update/UpdatePlatform";
 
 function App() {
   return (
@@ -35,9 +38,12 @@ function App() {
           <Route path="/home/viewed" element={<ViewedPage />} />
           <Route path="/home/watchList" element={<WatchListPage />} />
           <Route path="/home/search" element={<SearchPage />} />
-          <Route path="/admin/movie/update" element={<UpdateMovie />}/>
-          <Route path="/admin/movie/add" element={<AddMovies />}/>
-          <Route path="/admin/genre/add" element={<AddGenre />}/>
+          <Route path="/admin/movie/update" element={<UpdateMovie />} />
+          <Route path="/admin/movie/add" element={<AddMovies />} />
+          <Route path="/admin/genre/add" element={<AddGenre />} />
+          <Route path="/admin/genre/update" element={<UpdateGenre />} />
+          <Route path="/admin/platform/add" element={<AddPlatform />} />
+          <Route path="/admin/platform/update" element={<UpdatePlatform />} />
         </Routes>
       </Router>
     </AuthProvider>

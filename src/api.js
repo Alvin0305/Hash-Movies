@@ -32,12 +32,21 @@ export const createGenre = (genreData) =>
       "Content-Type": "multipart/form-data",
     },
   });
+export const updateGenre = (id, genreData) =>
+  API.put(`/genres/${id}`, genreData);
 export const deleteGenre = (id) => API.delete(`/genres/${id}`);
 
 // Platforms
 export const fetchPlatforms = () => API.get("/platforms");
 export const createPlatform = (platformData) =>
-  API.post("/platforms", platformData);
+  API.post("/platforms", platformData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+export const updatePlatform = (id, platformData) =>
+  API.put(`/platforms/${id}`, platformData);
+export const deletePlatform = (id) => API.delete(`/platforms/${id}`);
 
 // Reviews
 export const fetchReviews = () => API.get("/reviews");
