@@ -95,205 +95,7 @@ const Movies = () => {
 
   return (
     <div>
-      <div className="admin-movie-wrapper">
-        <div className="admin-page-details-div">
-          <div className="admin-home-page-detail">
-            MOVIES{" "}
-            <h1 className="admin-home-page-detail-value">{movies.length} </h1>
-          </div>
-          <div className="admin-home-page-detail">
-            FEATURED MOVIES
-            <h1 className="admin-home-page-detail-value">
-              {movies.filter((movie) => movie.isFeatured).length}
-            </h1>
-          </div>
-          <div className="admin-home-page-detail">
-            TRENDING MOVIES
-            <h1 className="admin-home-page-detail-value">
-              {movies.filter((movie) => movie.isTrending).length}
-            </h1>
-          </div>
-          <div className="admin-home-page-detail">
-            MOVIES RATED &gt; 4
-            <h1 className="admin-home-page-detail-value">
-              {movies.filter((movie) => movie.rating > 4).length}
-            </h1>
-          </div>
-          <div className="admin-home-page-detail">
-            U MOVIES
-            <h1 className="admin-home-page-detail-value">
-              {movies.filter((movie) => movie.certificate === "U").length}{" "}
-            </h1>
-          </div>
-          <div className="admin-home-page-detail">
-            UA MOVIES
-            <h1 className="admin-home-page-detail-value">
-              {movies.filter((movie) => movie.certificate === "UA").length}{" "}
-            </h1>
-          </div>
-          <div className="admin-home-page-detail">
-            A MOVIES
-            <h1 className="admin-home-page-detail-value">
-              {movies.filter((movie) => movie.certificate === "A").length}{" "}
-            </h1>
-          </div>
-        </div>
-        <div>
-          <table className="general-table">
-            <thead>
-              <tr>
-                <th className="table-head">#</th>
-                <th
-                  className="table-head sortable-table-head"
-                  onClick={() => handleSort("title")}
-                >
-                  Title{" "}
-                  {sortConfig.key === "title"
-                    ? sortConfig.direction === "asc"
-                      ? "▲"
-                      : "▼"
-                    : ""}
-                </th>
-                <th
-                  className="table-head sortable-table-head"
-                  onClick={() => handleSort("director")}
-                >
-                  Director{" "}
-                  {sortConfig.key === "director"
-                    ? sortConfig.direction === "asc"
-                      ? "▲"
-                      : "▼"
-                    : ""}
-                </th>
-                <th
-                  className="table-head sortable-table-head"
-                  onClick={() => handleSort("releaseDate")}
-                >
-                  Release Date{" "}
-                  {sortConfig.key === "releaseDate"
-                    ? sortConfig.direction === "asc"
-                      ? "▲"
-                      : "▼"
-                    : ""}
-                </th>
-                <th
-                  className="table-head sortable-table-head"
-                  onClick={() => handleSort("duration")}
-                >
-                  Duration{" "}
-                  {sortConfig.key === "duration"
-                    ? sortConfig.direction === "asc"
-                      ? "▲"
-                      : "▼"
-                    : ""}
-                </th>
-                <th
-                  className="table-head sortable-table-head"
-                  onClick={() => handleSort("language")}
-                >
-                  Language{" "}
-                  {sortConfig.key === "language"
-                    ? sortConfig.direction === "asc"
-                      ? "▲"
-                      : "▼"
-                    : ""}
-                </th>
-                <th
-                  className="table-head sortable-table-head"
-                  onClick={() => handleSort("certificate")}
-                >
-                  Certificate{" "}
-                  {sortConfig.key === "certificate"
-                    ? sortConfig.direction === "asc"
-                      ? "▲"
-                      : "▼"
-                    : ""}
-                </th>
-                <th
-                  className="table-head sortable-table-head"
-                  onClick={() => handleSort("isFeatured")}
-                >
-                  Featured{" "}
-                  {sortConfig.key === "isFeatured"
-                    ? sortConfig.direction === "asc"
-                      ? "▲"
-                      : "▼"
-                    : ""}
-                </th>
-                <th
-                  className="table-head sortable-table-head"
-                  onClick={() => handleSort("isTrending")}
-                >
-                  Trending{" "}
-                  {sortConfig.key === "isTrending"
-                    ? sortConfig.direction === "asc"
-                      ? "▲"
-                      : "▼"
-                    : ""}
-                </th>
-                <th
-                  className="table-head sortable-table-head"
-                  onClick={() => handleSort("rating")}
-                >
-                  Rating{" "}
-                  {sortConfig.key === "rating"
-                    ? sortConfig.direction === "asc"
-                      ? "▲"
-                      : "▼"
-                    : ""}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {sortedMovies.map((movie, index) => {
-                return (
-                  <tr key={index}>
-                    <td className="table-data">{index + 1}</td>
-                    <td className="table-data">{movie.title}</td>
-                    <td className="table-data">{movie.director}</td>
-                    <td className="table-data">
-                      {movie.releaseDate.split("T")[0]}
-                    </td>
-                    <td className="table-data">{movie.duration}</td>
-                    <td className="table-data">{movie.language}</td>
-                    <td className="table-data">{movie.certificate}</td>
-                    <td className="table-data">
-                      {movie.isFeatured ? "✅" : "❌"}
-                    </td>
-                    <td className="table-data">
-                      {movie.isTrending ? "✅" : "❌"}
-                    </td>
-                    <td className="table-data">{movie.rating}</td>
-                    <td className="table-data">
-                      <button
-                        className="table-button table-update-button"
-                        onClick={() =>
-                          navigate("/admin/movie/update", {
-                            state: { movie: movie },
-                          })
-                        }
-                      >
-                        Update
-                      </button>
-                    </td>
-                    <td className="table-data">
-                      <button
-                        className="table-button table-delete-button"
-                        onClick={() => deleteMovie(movie)}
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-          <a href="/admin/movie/add">
-            <button className="admin-add-button">+</button>
-          </a>
-        </div>
-      </div>
+      <h1 className="home-page-sub-heading">MOVIES</h1>
       <div className="admin-movies-graphs-div">
         <ResponsiveContainer width="50%" height={400}>
           <BarChart data={top10Movies}>
@@ -335,6 +137,164 @@ const Movies = () => {
             <Bar dataKey="count" fill="#4CAF50" barSize={50} name="Count" />
           </BarChart>
         </ResponsiveContainer>
+      </div>
+      <div>
+        <table className="general-table">
+          <thead>
+            <tr>
+              <th className="table-head">#</th>
+              <th
+                className="table-head sortable-table-head"
+                onClick={() => handleSort("title")}
+              >
+                Title{" "}
+                {sortConfig.key === "title"
+                  ? sortConfig.direction === "asc"
+                    ? "▲"
+                    : "▼"
+                  : ""}
+              </th>
+              <th
+                className="table-head sortable-table-head"
+                onClick={() => handleSort("director")}
+              >
+                Director{" "}
+                {sortConfig.key === "director"
+                  ? sortConfig.direction === "asc"
+                    ? "▲"
+                    : "▼"
+                  : ""}
+              </th>
+              <th
+                className="table-head sortable-table-head"
+                onClick={() => handleSort("releaseDate")}
+              >
+                Release Date{" "}
+                {sortConfig.key === "releaseDate"
+                  ? sortConfig.direction === "asc"
+                    ? "▲"
+                    : "▼"
+                  : ""}
+              </th>
+              <th
+                className="table-head sortable-table-head"
+                onClick={() => handleSort("duration")}
+              >
+                Duration{" "}
+                {sortConfig.key === "duration"
+                  ? sortConfig.direction === "asc"
+                    ? "▲"
+                    : "▼"
+                  : ""}
+              </th>
+              <th
+                className="table-head sortable-table-head"
+                onClick={() => handleSort("language")}
+              >
+                Language{" "}
+                {sortConfig.key === "language"
+                  ? sortConfig.direction === "asc"
+                    ? "▲"
+                    : "▼"
+                  : ""}
+              </th>
+              <th
+                className="table-head sortable-table-head"
+                onClick={() => handleSort("certificate")}
+              >
+                Certificate{" "}
+                {sortConfig.key === "certificate"
+                  ? sortConfig.direction === "asc"
+                    ? "▲"
+                    : "▼"
+                  : ""}
+              </th>
+              <th
+                className="table-head sortable-table-head"
+                onClick={() => handleSort("isFeatured")}
+              >
+                Featured{" "}
+                {sortConfig.key === "isFeatured"
+                  ? sortConfig.direction === "asc"
+                    ? "▲"
+                    : "▼"
+                  : ""}
+              </th>
+              <th
+                className="table-head sortable-table-head"
+                onClick={() => handleSort("isTrending")}
+              >
+                Trending{" "}
+                {sortConfig.key === "isTrending"
+                  ? sortConfig.direction === "asc"
+                    ? "▲"
+                    : "▼"
+                  : ""}
+              </th>
+              <th
+                className="table-head sortable-table-head"
+                onClick={() => handleSort("rating")}
+              >
+                Rating{" "}
+                {sortConfig.key === "rating"
+                  ? sortConfig.direction === "asc"
+                    ? "▲"
+                    : "▼"
+                  : ""}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {sortedMovies.map((movie, index) => {
+              return (
+                <tr key={index}>
+                  <td className="table-data">{index + 1}</td>
+                  <td className="table-data">{movie.title}</td>
+                  <td className="table-data">{movie.director}</td>
+                  <td className="table-data">
+                    {movie.releaseDate.split("T")[0]}
+                  </td>
+                  <td className="table-data">{movie.duration}</td>
+                  <td className="table-data">{movie.language}</td>
+                  <td className="table-data">{movie.certificate}</td>
+                  <td className="table-data">
+                    {movie.isFeatured ? "✅" : "❌"}
+                  </td>
+                  <td className="table-data">
+                    {movie.isTrending ? "✅" : "❌"}
+                  </td>
+                  <td className="table-data">{movie.rating}</td>
+                  <td className="table-data">
+                    <button
+                      className="table-button table-update-button"
+                      onClick={() =>
+                        navigate("/admin/movie/update", {
+                          state: { movie: movie },
+                        })
+                      }
+                    >
+                      Update
+                    </button>
+                  </td>
+                  <td className="table-data">
+                    <button
+                      className="table-button table-delete-button"
+                      onClick={() => deleteMovie(movie)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+        <button
+          className="admin-add-button"
+          onClick={() => navigate("/admin/movie/add")}
+        >
+          +
+        </button>
       </div>
     </div>
   );

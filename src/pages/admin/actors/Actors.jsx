@@ -40,11 +40,9 @@ const Actors = () => {
         const response = await api.fetchActors();
         console.log(response.data);
         setActors(response.data);
-        console.log(
-          response.data[0].name,
-          response.data[0].debutMovie,
-          response.data[0].debutMovie.title
-        );
+        console.log(response.data[0].name);
+        console.log(response.data[0].debutMovie);
+        console.log(response.data[0].debutMovie.title);
       } catch (err) {
         console.log("actor fetch error: ", err.message);
       }
@@ -55,7 +53,7 @@ const Actors = () => {
   const deleteActor = (id) => {
     const deleteAct = async () => {
       try {
-        // const response = await api.delete(id);
+        const response = await api.deleteActor(id);
         console.log(response.data);
         setActors(actors.filter((actor) => actor._id !== id));
       } catch (err) {
@@ -68,6 +66,7 @@ const Actors = () => {
 
   return (
     <div className="admin-table-div">
+      <h1 className="home-page-sub-heading">ACTORS</h1>
       <table className="genre-table">
         <thead>
           <tr className="table-row">
@@ -107,9 +106,9 @@ const Actors = () => {
               <td className="table-data">
                 <button
                   className="table-button table-update-button"
-                  //   onClick={() =>
-                  //     navigate("/admin/genre/update", { state: { genre: genre } })
-                  //   }
+                  onClick={() =>
+                    navigate("/admin/actor/update", { state: { actor: actor } })
+                  }
                 >
                   Update
                 </button>
@@ -117,7 +116,7 @@ const Actors = () => {
               <td className="table-data">
                 <button
                   className="table-button table-delete-button"
-                  //   onClick={() => deleteGenre(genre._id)}
+                    onClick={() => deleteActor(actor._id)}
                 >
                   Delete
                 </button>
@@ -128,10 +127,10 @@ const Actors = () => {
       </table>
       <button
         className="admin-add-button"
-        // onClick={(e) => {
-        //   e.preventDefault();
-        //   navigate("/admin/genre/add");
-        // }}
+        onClick={(e) => {
+          e.preventDefault();
+          navigate("/admin/actor/add");
+        }}
       >
         +
       </button>

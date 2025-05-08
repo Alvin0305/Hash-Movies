@@ -6,7 +6,7 @@ const { parseFormData } = require("../middlewares/parseFormData");
 
 router.get("/", movieController.getAllMovies);
 router.get("/featured", movieController.getFeaturedMovies);
-router.get("genre/:genreId", movieController.getMovieByGenre);
+router.get("/genre/:id", movieController.getMovieByGenre);
 router.get("/:id", movieController.getMovieById);
 router.post("/", upload.single("image"), parseFormData, movieController.createMovie);
 router.put("/:id", movieController.updateMovie);

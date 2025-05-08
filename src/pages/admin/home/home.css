@@ -2,6 +2,8 @@ table {
     border-collapse: collapse;
     overflow-x: auto;
     height: fit-content;
+    align-self: center;
+    justify-self: center;
 }
 
 .sortable-table-head {
@@ -70,7 +72,7 @@ table {
     align-items: center;
     font-size: x-large;
     margin-top: 10px;
-    justify-self: start;
+    justify-self: center;
     cursor: pointer;
 }
 
@@ -80,28 +82,36 @@ table {
     transform: scale(1.1);
 }
 
-.admin-home-page-nav-bar {
-    border-top: 1px solid gray;
-    border-bottom: 1px solid gray;
-    display: flex;
-    margin-bottom: 40px;
-}
-
-.admin-home-page-nav-button {
-    height: 100%;
-    flex: 1;
-    font-size: 30px;
-    font-family: Hanuman, 'Serif';
-    padding: 20px;
-    background-color: transparent;
-    color: white;
-    border: none;
-}
-
 .admin-home-page {
-    padding: 50px;
+    display: flex;
+    padding-left: 0;
+    padding-top: 0;
+    overflow-y: auto;
 }
 
-.admin-home-page-nav-button:hover {
-    background-color: #171717;
+.admin-page-dashboard {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100vh;
+    width: 80px;
+    background-color: #121240;
+    overflow-y: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.admin-home-content {
+    margin-left: 80px;
+    padding: 20px;
+    width: 100%;
+}
+
+.admin-dashboard-icon {
+    padding: 20px;
+}
+
+.admin-dashboard-icon:hover {
+    background-color: #202020;
 }

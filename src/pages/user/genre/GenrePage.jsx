@@ -12,15 +12,26 @@ const GenrePage = () => {
 
   const navigate = useNavigate();
 
-  const movies = genre.movies;
+  const [movies, setMovies] = useState([]);
   let [featuredFilms, setFeaturedFilms] = useState([]);
   let [trendingFilms, setTrendingFilms] = useState([]);
 
   useEffect(() => {
-    featuredFilms = movies.filter((movie) => movie.isFeatured);
-    trendingFilms = movies.filter((movie) => movie.isTrending);
-    setFeaturedFilms(featuredFilms);
-    setTrendingFilms(trendingFilms);
+    const fetchMovies = async () => {
+      try {
+        const response = await api.fetchMoviesByGenre(genre._id);
+        console.log("response.data: ", response.data);
+        setMovies(response.data);
+        featuredFilms = response.data.filter((movie) => movie.isFeatured);
+        trendingFilms = response.data.filter((movie) => movie.isTrending);
+        setFeaturedFilms(featuredFilms);
+        setTrendingFilms(trendingFilms);
+      } catch (err) {
+        console.log("fetch movie by genre error", err.message);
+      }
+    };
+
+    fetchMovies();
   }, []);
 
   const navigateToHome = () => {
@@ -36,7 +47,11 @@ const GenrePage = () => {
           className="movie-page-sidebar-back-button"
         />
         <h1>{genre.name}</h1>
-        <img src={`/backend/${genre.image}`} alt="No internet" className="genre-page-image" />
+        <img
+          src={`/backend/${genre.image}`}
+          alt="No internet"
+          className="genre-page-image"
+        />
         <p>{genre.description}</p>
       </div>
       <div className="genre-page-content">

@@ -32,8 +32,9 @@ exports.getAllMovies = async (req, res) => {
 };
 
 exports.getMovieByGenre = async (req, res) => {
+  console.log("fetching movie by genre");
   try {
-    const movies = await Movie.find({ genres: req.params.genreId })
+    const movies = await Movie.find({ genres: req.params.id })
       .populate("genres")
       .populate("actors");
     if (!movies) res.status(404).json({ error: "No movie in that genre" });
@@ -49,17 +50,17 @@ exports.createMovie = async (req, res) => {
       title: req.body.title,
       director: req.body.director,
       releaseDate: req.body.releaseDate,
-      genres: JSON.parse(req.body.genres || '[]'),
-      actors: JSON.parse(req.body.actors || '[]'),
-      duration: req.body.duration, 
+      genres: JSON.parse(req.body.genres || "[]"),
+      actors: JSON.parse(req.body.actors || "[]"),
+      duration: req.body.duration,
       storyline: req.body.storyline,
       language: req.body.language,
       certificate: req.body.certificate,
-      likes: req.body.likes, 
-      platforms: JSON.parse(req.body.platforms || '[]'),
+      likes: req.body.likes,
+      platforms: JSON.parse(req.body.platforms || "[]"),
       trailer: req.body.trailer,
-      isFeatured: req.body.isFeatured, 
-      isTrending: req.body.isTrending  
+      isFeatured: req.body.isFeatured,
+      isTrending: req.body.isTrending,
     };
 
     if (req.file) {
@@ -71,10 +72,10 @@ exports.createMovie = async (req, res) => {
 
     const movie = new Movie(movieData);
     await movie.save();
-    
+
     if (movieData.actors && movieData.actors.length > 0) {
       await Actor.updateMany(
-        { _id: { $in: movieData.actors } }, 
+        { _id: { $in: movieData.actors } },
         { $addToSet: { films: movie._id } }
       );
     }
@@ -89,7 +90,7 @@ exports.createMovie = async (req, res) => {
     res.status(201).json(movie);
   } catch (err) {
     console.error("Full error in createMovie:", err);
-    if (err.name === 'ValidationError') {
+    if (err.name === "ValidationError") {
       return res.status(400).json({ error: err.message, details: err.errors });
     }
     res.status(500).json({ error: err.message });

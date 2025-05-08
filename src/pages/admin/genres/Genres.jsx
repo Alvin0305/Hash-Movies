@@ -61,6 +61,7 @@ const Genres = () => {
 
   return (
     <div className="admin-table-div">
+      <h1 className="home-page-sub-heading">GENRES</h1>
       <table className="genre-table">
         <thead>
           <tr className="table-row">

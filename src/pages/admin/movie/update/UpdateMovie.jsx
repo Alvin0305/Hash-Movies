@@ -25,7 +25,7 @@ const UpdateMovie = () => {
     certificate: movie.certificate || "UA",
     isFeatured: movie.isFeatured,
     isTrending: movie.isTrending,
-    rating: movie.rating,
+    rating: movie.rating || 0,
     trailer: movie.trailer,
     storyline: movie.storyline,
   });

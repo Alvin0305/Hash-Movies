@@ -24,20 +24,15 @@ exports.createActor = async (req, res) => {
 
 exports.getAllActors = async (req, res) => {
   try {
-    const {
-      minMovies, 
-      sort = "-createdAt",
-      limit = 20,
-      language,
-    } = req.query;
+    const { minMovies, sort = "-createdAt", limit = 20, language } = req.query;
 
-    let filterCriteria = {}; 
+    let filterCriteria = {};
 
     if (language) {
       filterCriteria.languages = language;
     }
 
-    let query = Actor.find(filterCriteria); 
+    let query = Actor.find(filterCriteria);
 
     query = query.sort(sort);
 
@@ -45,13 +40,14 @@ exports.getAllActors = async (req, res) => {
 
     const actors = await query
       .populate("debutMovie")
-      .populate("mostFamousMovies")
-      .populate("films");
-
+      .populate("mostFamousMovies");
+    console.log("actors: ", actors);
     res.json(actors);
   } catch (err) {
     console.error("ERROR in getAllActors:", err);
-    res.status(500).json({ error: "An internal server error occurred while fetching actors." }); // Provide a generic message to the client
+    res.status(500).json({
+      error: "An internal server error occurred while fetching actors.",
+    });
   }
 };
 

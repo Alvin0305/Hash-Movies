@@ -1,25 +1,61 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Users from "../user/Users";
 import Movies from "../movie/Movies";
 import Genres from "../genres/Genres";
 import Platforms from "../platforms/Platforms";
 import "./home.css";
 import Actors from "../actors/Actors";
+import Dashboard from "../dashboard/Dashboard";
 
 const AdminHomePage = () => {
-  const [selectedPage, setSelectedPage] = useState(0);
-  const pages = [<Users />, <Movies />, <Genres />, <Platforms />, <Actors />];
-  const pageNames = ["Users", "Movies", "Genres", "Platforms", "Actors"];
+  const userRef = useRef(null);
+  const movieRef = useRef(null);
+  const genreRef = useRef(null);
+  const platformRef = useRef(null);
+  const actorRef = useRef(null);
+
+  const scrollToUsers = () => {
+    userRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+  const scrollToMovies = () => {
+    movieRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+  const scrollToGenres = () => {
+    genreRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+  const scrollToPlatforms = () => {
+    platformRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+  const scrollToActors = () => {
+    actorRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <div className="admin-home-page">
-      <div className="admin-home-page-nav-bar">
-        {pageNames.map((page, index) => (
-          <button key={index} onClick={() => setSelectedPage(index)} className="admin-home-page-nav-button">
-            {page}
-          </button>
-        ))}
+      <Dashboard
+        scrollToUsers={scrollToUsers}
+        scrollToGenres={scrollToGenres}
+        scrollToMovies={scrollToMovies}
+        scrollToPlatforms={scrollToPlatforms}
+        scrollToActors={scrollToActors}
+      />
+      <div className="admin-home-content">
+        <div ref={userRef}>
+          <Users />
+        </div>
+        <div ref={movieRef}>
+          <Movies />
+        </div>
+        <div ref={genreRef}>
+          <Genres />
+        </div>
+        <div ref={platformRef}>
+          <Platforms />
+        </div>
+        <div ref={actorRef}>
+          <Actors />
+        </div>
       </div>
-      <div>{pages[selectedPage]}</div>
     </div>
   );
 };

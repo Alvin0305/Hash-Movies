@@ -47,24 +47,7 @@ const Users = () => {
 
   return (
     <div className="admin-home-users-page">
-      <div className="admin-page-details-div">
-        <div className="admin-home-page-detail">
-          USERS
-          <h1 className="admin-home-page-detail-value">{users.length} </h1>
-        </div>
-        <div className="admin-home-page-detail">
-          MALES
-          <h1 className="admin-home-page-detail-value">
-            {users.filter((user) => user.gender === "M").length}{" "}
-          </h1>
-        </div>
-        <div className="admin-home-page-detail">
-          FEMALES
-          <h1 className="admin-home-page-detail-value">
-            {users.filter((user) => user.gender === "F").length}{" "}
-          </h1>
-        </div>
-      </div>
+      <h1 className="home-page-sub-heading">USERS</h1>
       <table>
         <thead>
           <tr className="table-row">

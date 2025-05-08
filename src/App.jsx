@@ -19,6 +19,8 @@ import AddGenre from "./pages/admin/genres/add/AddGenre";
 import UpdateGenre from "./pages/admin/genres/update/UpdateGenre";
 import AddPlatform from "./pages/admin/platforms/add/AddPlatform";
 import UpdatePlatform from "./pages/admin/platforms/update/UpdatePlatform";
+import AddActor from "./pages/admin/actors/add/AddActor";
+import UpdateActor from "./pages/admin/actors/update/UpdateActor";
 
 function App() {
   return (
@@ -44,6 +46,8 @@ function App() {
           <Route path="/admin/genre/update" element={<UpdateGenre />} />
           <Route path="/admin/platform/add" element={<AddPlatform />} />
           <Route path="/admin/platform/update" element={<UpdatePlatform />} />
+          <Route path="/admin/actor/add" element={<AddActor />} />
+          <Route path="/admin/actor/update" element={<UpdateActor />} />
         </Routes>
       </Router>
     </AuthProvider>

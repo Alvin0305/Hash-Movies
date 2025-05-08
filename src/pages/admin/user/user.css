@@ -1,7 +1,5 @@
 .admin-home-users-page {
-    display: flex;
-    justify-content: space-evenly;
-    margin: 40px;
+    width: 100%;
 }
 
 .admin-home-page-detail {

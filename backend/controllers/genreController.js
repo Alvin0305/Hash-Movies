@@ -11,7 +11,6 @@ exports.createGenre = async (req, res) => {
     const genreData = {
       name: req.body.name,
       description: req.body.description,
-      movies: [],
     };
 
     if (req.file) {
@@ -30,7 +29,7 @@ exports.createGenre = async (req, res) => {
 
 exports.getAllGenres = async (req, res) => {
   try {
-    const genres = await Genre.find().populate("movies");
+    const genres = await Genre.find();
     if (genres.length === 0)
       return res.status(404).json({ error: "No genres" });
     res.json(genres);
@@ -41,7 +40,7 @@ exports.getAllGenres = async (req, res) => {
 
 exports.getGenreById = async (req, res) => {
   try {
-    const genre = await Genre.findById(req.params.id).populate("movies");
+    const genre = await Genre.findById(req.params.id);
     if (!genre) return res.status(404).json({ error: "Genre not found" });
     res.json(genre);
   } catch (err) {
