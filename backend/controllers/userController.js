@@ -98,6 +98,104 @@ exports.updateUser = async (req, res) => {
   }
 };
 
+exports.removeFromViewed = async (req, res) => {
+  console.log("removing ", req.body.movieId, "from ", req.params.id);
+  const userId = req.params.id;
+  const movieId = req.body.movieId;
+
+  try {
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { $pull: { viewed: movieId } },
+      { new: true }
+    );
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+exports.addToViewed = async (req, res) => {
+  const userId = req.params.id;
+  const movieId = req.body.movieId;
+  try {
+    const user = await User.findByIdAndUpdate(
+      userId,
+      {
+        $push: { viewed: movieId },
+      },
+      { new: true }
+    );
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+exports.addToLiked = async (req, res) => {
+  const userId = req.params.id;
+  const movieId = req.body.movieId;
+
+  try {
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { $push: { liked: movieId } },
+      { new: true }
+    );
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+exports.removeFromLiked = async (req, res) => {
+  const userId = req.params.id;
+  const movieId = req.body.movieId;
+
+  try {
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { $pull: { liked: movieId } },
+      { new: true }
+    );
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+exports.removeFromWatchList = async (req, res) => {
+  const userId = req.params.id;
+  const movieId = req.body.movieId;
+
+  try {
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { $pull: { watchList: movieId } },
+      { new: true }
+    );
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+exports.addToWatchList = async (req, res) => {
+  const userId = req.params.id;
+  const movieId = req.body.movieId;
+
+  try {
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { $push: { watchList: movieId } },
+      { new: true }
+    );
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 exports.deleteUser = async (req, res) => {
   try {
     const user = await User.findByIdAndDelete(req.params.id);

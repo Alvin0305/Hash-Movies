@@ -10,6 +10,7 @@
 .admin-page-details-div {
     padding: 10px;
     padding-left: 0;
+    height: fit-content;
 }
 
 .admin-home-page-detail-value {

@@ -127,7 +127,7 @@
 
 .movie-review-form {
     display: flex;
-    width: 100%;
+    margin-right: 20px;
 }
 
 .movie-review-field {
@@ -138,6 +138,7 @@
     font-size: medium;
     color: white;
     margin: 0px 10px;
+    padding-left: 10px;
 }
 
 .movie-review-send-button {
@@ -147,6 +148,71 @@
     color: white;
     border-radius: 5px;
     font-size: large;
+}
+
+.reviews-div {
+    margin-top: 20px;
+}
+
+.review-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.review-buttons {
+    display: flex;
+}
+
+.review-button {
+    background-color: transparent;
+    border: none;
+}
+
+.review-button-value {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 10px;
+}
+
+.review-value {
+    margin: 0;
+}
+
+.review-delete-button {
+    padding: 5px;
+    height: fit-content;
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.review-delete-button:hover {
+    transform: scale(1.1);
+}
+
+.review {
+    margin: 10px;
+}
+
+.review-username {
+    margin: 0;
+    margin-left: 10px;
+    font-size: small;
+    font-weight: bold;
+}
+
+.review-user-div {
+    display: flex;
+    align-items: center;
+}
+
+.review-review {
+    margin: 0;
+    margin-top: 5px;
 }
 
 @media (max-width: 568px) {

@@ -2,7 +2,6 @@ const Review = require("../models/Review");
 const Movie = require("../models/Movie");
 const User = require("../models/User");
 
-// Create a new review
 exports.createReview = async (req, res) => {
   try {
     const { movie, user, review, rating } = req.body;
@@ -76,7 +75,6 @@ exports.getAllReviews = async (req, res) => {
   }
 };
 
-// Get reviews for a specific movie
 exports.getReviewsByMovie = async (req, res) => {
   try {
     const { page = 1, limit = 5 } = req.query;
@@ -97,7 +95,6 @@ exports.getReviewsByMovie = async (req, res) => {
   }
 };
 
-// Get reviews by a specific user
 exports.getReviewsByUser = async (req, res) => {
   try {
     const reviews = await Review.find({ user: req.params.userId })
@@ -114,7 +111,6 @@ exports.getReviewsByUser = async (req, res) => {
   }
 };
 
-// Get a single review by ID
 exports.getReviewById = async (req, res) => {
   try {
     const review = await Review.findById(req.params.id)
@@ -131,10 +127,9 @@ exports.getReviewById = async (req, res) => {
   }
 };
 
-// Update a review
 exports.updateReview = async (req, res) => {
   try {
-    const { review, rating } = req.body;
+    const { review, rating, likes, dislikes } = req.body;
 
     if (rating && (rating < 0 || rating > 10)) {
       return res.status(400).json({ error: "Rating must be between 0 and 10" });
@@ -142,7 +137,7 @@ exports.updateReview = async (req, res) => {
 
     const updatedReview = await Review.findByIdAndUpdate(
       req.params.id,
-      { review, rating },
+      { review, rating, likes, dislikes },
       { new: true, runValidators: true }
     ).populate("user", "name");
 

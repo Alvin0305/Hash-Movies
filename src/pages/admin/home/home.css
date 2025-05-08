@@ -1,6 +1,7 @@
 table {
     border-collapse: collapse;
     overflow-x: auto;
+    height: fit-content;
 }
 
 .sortable-table-head {

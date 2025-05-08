@@ -145,7 +145,7 @@ const UpdateGenre = () => {
       <div className="update-genre-page-wrapper-div">
         <form action="" className="add-genre-page-wrapper">
           <div className="add-genre-image-div">
-            <img src={formData.image} alt="No internet" width={300} />
+            <img src={`/backend/${formData.image}`} alt="No internet" width={300} />
           </div>
           <div className="add-genre-content-div">
             <div className="add-genres-buttons">

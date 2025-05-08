@@ -25,31 +25,22 @@ exports.createActor = async (req, res) => {
 exports.getAllActors = async (req, res) => {
   try {
     const {
-      minMovies, // Consider if you really need this complex filter for now
+      minMovies, 
       sort = "-createdAt",
       limit = 20,
-      language, // Removed default 'en' - only filter if language is provided in query
+      language,
     } = req.query;
 
-    let filterCriteria = {}; // Build filter criteria object
+    let filterCriteria = {}; 
 
-    // Correct way to filter if 'language' query parameter is present
     if (language) {
       filterCriteria.languages = language;
     }
 
-    // --- Example of correct filtering by array size (if needed later) ---
-    // if (minMovies) {
-    //   filterCriteria.$expr = { $gte: [{ $size: "$films" }, parseInt(minMovies)] };
-    // }
-    // --- End Example ---
+    let query = Actor.find(filterCriteria); 
 
-    let query = Actor.find(filterCriteria); // Apply filters
-
-    // Apply sorting (will always apply the default if not overridden)
     query = query.sort(sort);
 
-    // Apply limit (will always apply the default if not overridden)
     query = query.limit(parseInt(limit));
 
     const actors = await query
@@ -59,7 +50,6 @@ exports.getAllActors = async (req, res) => {
 
     res.json(actors);
   } catch (err) {
-    // IMPORTANT: Log the error to your backend console for debugging
     console.error("ERROR in getAllActors:", err);
     res.status(500).json({ error: "An internal server error occurred while fetching actors." }); // Provide a generic message to the client
   }

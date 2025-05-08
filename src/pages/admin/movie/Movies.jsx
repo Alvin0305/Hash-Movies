@@ -87,7 +87,7 @@ const Movies = () => {
       language,
       count,
     }));
-    console.log(languageList)
+    console.log(languageList);
     return languageList;
   };
 
@@ -321,10 +321,7 @@ const Movies = () => {
         <ResponsiveContainer width="50%" height={400}>
           <BarChart data={movieInEachLanguage}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis
-              dataKey="language"
-              interval={0}
-            />
+            <XAxis dataKey="language" interval={0} />
             <YAxis />
             <Tooltip
               contentStyle={{

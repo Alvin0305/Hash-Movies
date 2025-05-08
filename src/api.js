@@ -52,9 +52,24 @@ export const deletePlatform = (id) => API.delete(`/platforms/${id}`);
 export const fetchReviews = () => API.get("/reviews");
 export const fetchReviewsByMovie = (id) => API.get(`/reviews/movie/${id}`);
 export const createReview = (reviewData) => API.post("/reviews", reviewData);
+export const deleteReview = (id) => API.delete(`/reviews/${id}`);
+export const updateReview = (id, reviewData) =>
+  API.put(`/reviews/${id}`, reviewData);
 
 export const fetchWatchList = (id) => API.get(`/users/${id}/watchList`);
 export const fetchUser = (id) => API.get(`users/${id}`);
 export const updateUser = (id, credentials) =>
   API.put(`users/${id}`, credentials);
 export const fetchAllUsers = () => API.get("/users");
+export const addToViewed = (userId, movieId) =>
+  API.put(`/users/viewed/add/${userId}`, movieId);
+export const removeFromViewed = (userId, movieId) =>
+  API.put(`/users/viewed/remove/${userId}`, movieId);
+export const addToLiked = (userId, movieId) =>
+  API.put(`/users/liked/add/${userId}`, movieId);
+export const removeFromLiked = (userId, movieId) =>
+  API.put(`/users/liked/remove/${userId}`, movieId);
+export const addToWatchList = (userId, movieId) =>
+  API.put(`/users/watchlist/add/${userId}`, movieId);
+export const removeFromWatchList = (userId, movieId) =>
+  API.put(`/users/watchlist/remove/${userId}`, movieId);

@@ -36,7 +36,7 @@ const GenrePage = () => {
           className="movie-page-sidebar-back-button"
         />
         <h1>{genre.name}</h1>
-        <img src={genre.image} alt="No internet" className="genre-page-image" />
+        <img src={`/backend/${genre.image}`} alt="No internet" className="genre-page-image" />
         <p>{genre.description}</p>
       </div>
       <div className="genre-page-content">

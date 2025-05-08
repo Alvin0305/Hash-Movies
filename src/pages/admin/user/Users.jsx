@@ -47,13 +47,22 @@ const Users = () => {
 
   return (
     <div className="admin-home-users-page">
-      <div>
-        <div className="admin-home-page-detail">{users.length} USERS</div>
+      <div className="admin-page-details-div">
         <div className="admin-home-page-detail">
-          {users.filter((user) => user.gender === "M").length} MALES
+          USERS
+          <h1 className="admin-home-page-detail-value">{users.length} </h1>
         </div>
         <div className="admin-home-page-detail">
-          {users.filter((user) => user.gender === "F").length} FEMALES
+          MALES
+          <h1 className="admin-home-page-detail-value">
+            {users.filter((user) => user.gender === "M").length}{" "}
+          </h1>
+        </div>
+        <div className="admin-home-page-detail">
+          FEMALES
+          <h1 className="admin-home-page-detail-value">
+            {users.filter((user) => user.gender === "F").length}{" "}
+          </h1>
         </div>
       </div>
       <table>
