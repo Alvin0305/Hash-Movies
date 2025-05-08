@@ -12,16 +12,23 @@ import {
   FaEye,
 } from "react-icons/fa";
 import FlowPane from "../home/utils/FlowPane";
+import ScrollPane from "../home/utils/ScrollPane";
+import Review from "./components/Review";
 
 const MoviePage = () => {
   const location = useLocation();
   const movie = location.state.movie || {};
+  const user = location.state.user || {};
   const navigate = useNavigate();
 
   const [relatedMovies, setRelatedMovies] = useState([]);
   const [rated, setRated] = useState(0);
+  const [reviews, setReviews] = useState([]);
+
+  const [userReview, setUserReview] = useState("");
 
   useEffect(() => {
+    console.log("user in movie page", user);
     const getMovies = async () => {
       try {
         movie.genres.map(async (genre) => {
@@ -32,8 +39,40 @@ const MoviePage = () => {
         console.log("fetch related movie error:", err.message);
       }
     };
+
+    const getReviews = async () => {
+      try {
+        const response = await api.fetchReviewsByMovie(movie._id);
+        console.log(response.data);
+        setReviews(response.data);
+      } catch (err) {
+        console.log("review fetch error", err.message);
+      }
+    };
     getMovies();
+    getReviews();
   }, []);
+
+  const sendReview = () => {
+    const send = async () => {
+      try {
+        const reviewData = {
+          user: user._id,
+          movie: movie._id,
+          review: userReview,
+          rating: 5,
+          likes: 0,
+          dislikes: 0,
+        };
+        const response = await api.createReview(reviewData);
+        console.log(response.data);
+        setReviews([response.data, ...reviews]);
+      } catch (err) {
+        console.log("review send error: ", err.message);
+      }
+    };
+    send();
+  };
 
   return (
     <div className="movie-page">
@@ -41,7 +80,7 @@ const MoviePage = () => {
         <button
           className="movie-page-sidebar-back-button"
           onClick={() => {
-            navigate("/home");
+            navigate("/home", { state: { user: user } });
           }}
         >
           <FaBackward color="white" size={30} />
@@ -99,9 +138,7 @@ const MoviePage = () => {
             <button className="movie-page-sidebar-button movie-page-like-button">
               <div>
                 <FaEye size={40} color="white" />
-                <h4 className="movie-page-sidebar-button-text">
-                  Viewed
-                </h4>
+                <h4 className="movie-page-sidebar-button-text">Viewed</h4>
               </div>
             </button>
             <button className="movie-page-sidebar-button">
@@ -143,8 +180,32 @@ const MoviePage = () => {
           </div>
         </div>
         <h1>More Like this</h1>
-        <FlowPane movies={relatedMovies} />
-        {/* <ScrollPane movies={relatedMovies} /> */}
+        {/* <FlowPane movies={relatedMovies} user={user}/> */}
+        <ScrollPane movies={relatedMovies} user={user} />
+        <div className="movie-page-review-session">
+          <h2>REVIEW SESSION</h2>
+          <form action="" className="movie-review-form">
+            <input
+              type="text"
+              value={userReview}
+              placeholder="Type your review"
+              onChange={(e) => setUserReview(e.target.value)}
+              className="movie-review-field"
+            />
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                sendReview();
+              }}
+              className="movie-review-send-button"
+            >
+              SEND
+            </button>
+          </form>
+          {reviews.map((review, index) => (
+            <Review key={index} review={review} />
+          ))}
+        </div>
       </div>
     </div>
   );

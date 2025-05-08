@@ -8,6 +8,7 @@ import { FaBackward } from "react-icons/fa";
 const GenrePage = () => {
   const location = useLocation();
   const genre = location.state.genre || {};
+  const user = location.state.user || {};
 
   const navigate = useNavigate();
 
@@ -23,7 +24,7 @@ const GenrePage = () => {
   }, []);
 
   const navigateToHome = () => {
-    navigate("/home");
+    navigate("/home", { state: { user: user } });
   };
 
   return (

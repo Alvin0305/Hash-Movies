@@ -4,11 +4,11 @@ import MovieTile from "../MovieTile";
 import "../../utils/utils.css";
 import ScrollPane from "../../utils/ScrollPane";
 
-const TrendingSession = ({ movies }) => {
+const TrendingSession = ({ movies, user }) => {
   return (
     <div>
       <h1 className="home-page-sub-heading">Trending Movies</h1>
-      <ScrollPane movies={movies} />
+      <ScrollPane movies={movies} user={user}/>
     </div>
   );
 };

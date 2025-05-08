@@ -64,6 +64,14 @@
     align-items: center;
 }
 
+.update-platform-label {
+    margin-top: 10px;
+}
+
+.update-storyline-label {
+    margin-top: 10px;
+}
+
 .update-movie-buttons {
     align-self: flex-end;
 }

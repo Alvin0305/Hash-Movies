@@ -1,0 +1,18 @@
+.admin-movie-wrapper {
+    display: flex;
+}
+
+.admin-movies-graphs-div {
+    margin-top: 40px;
+    display: flex;
+}
+
+.admin-page-details-div {
+    padding: 10px;
+    padding-left: 0;
+}
+
+.admin-home-page-detail-value {
+    margin: 0;
+    margin-top: 5px;
+}

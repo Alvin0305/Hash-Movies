@@ -33,28 +33,43 @@ const UpdateMovie = () => {
   const [loading, setLoading] = useState(true);
   const [allGenres, setAllGenres] = useState([]);
   const [genres, setGenres] = useState({});
+  const [allPlatforms, setAllPlatforms] = useState([]);
+  const [platforms, setPlatforms] = useState({});
 
   useEffect(() => {
-    const fetchAllGenres = async () => {
+    const fetchAllGenresAndPlatforms = async () => {
       try {
-        const response = await api.fetchGenres();
-        setAllGenres(response.data);
+        const [genreResponse, platformResponse] = await Promise.all([
+          api.fetchGenres(),
+          api.fetchPlatforms(),
+        ]);
+        console.log("genre response: ", genreResponse);
+        console.log("platform response: ", platformResponse);
+        setAllGenres(genreResponse.data);
+        setAllPlatforms(platformResponse.data.platforms);
 
         const initialGenres = {};
-        response.data.forEach((genre) => {
+        const initialPlatforms = {};
+        genreResponse.data.forEach((genre) => {
           initialGenres[genre._id] = movie.genres.some(
             (g) => g._id === genre._id
           );
         });
+        platformResponse.data.platforms.forEach((platform) => {
+          initialPlatforms[platform._id] = movie.platforms.some(
+            (p) => p._id === platform._id
+          );
+        });
 
         setGenres(initialGenres);
+        setPlatforms(initialPlatforms);
         setLoading(false);
         console.log(genres);
       } catch (err) {
         console.log("genre fetch error: ", err.message);
       }
     };
-    fetchAllGenres();
+    fetchAllGenresAndPlatforms();
   }, []);
 
   const handleSave = (e) => {
@@ -62,13 +77,20 @@ const UpdateMovie = () => {
     const save = async () => {
       try {
         const genreIds = [];
+        const platformIds = [];
         for (const id in genres) {
           if (genres[id]) {
             genreIds.push(id);
           }
         }
+        for (const id in platforms) {
+          if (platforms[id]) {
+            platformIds.push(id);
+          }
+        }
 
         console.log(genreIds);
+        console.log(platformIds);
 
         const movieData = {
           _id: movie._id,
@@ -86,11 +108,12 @@ const UpdateMovie = () => {
           rating: Number(data.rating),
           trailer: data.trailer,
           storyline: data.storyline,
+          platforms: platformIds,
         };
         const response = await api.updateMovie(movie._id, movieData);
         console.log(response.data);
 
-        navigate(-1);
+        navigate("/admin/home");
       } catch (err) {
         console.log("movie update error", err);
       }
@@ -263,8 +286,26 @@ const UpdateMovie = () => {
                 />
               ))}
             </div>
+            <label htmlFor="Platforms" className="update-movie-label update-platform-label">
+              PLATFORMS
+            </label>
+            <div className="update-movie-genres">
+              {allPlatforms.map((platform) => (
+                <Genre
+                  genre={platform.name}
+                  onAdd={() => {
+                    setPlatforms((prev) => ({
+                      ...prev,
+                      [platform._id]: !prev[platform._id],
+                    }));
+                  }}
+                  key={platform._id}
+                  selected={platforms[platform._id] || false}
+                />
+              ))}
+            </div>
             <div className="update-movie-bottom-label-div">
-              <label htmlFor="Story Line">STORY LINE</label>
+              <label htmlFor="Story Line" className="update-movie-label update-storyline-label">STORY LINE</label>
               <textarea
                 id="storyline"
                 type="text"

@@ -2,10 +2,11 @@ import React from "react";
 import "../utils/utils.css";
 import { useNavigate } from "react-router-dom";
 
-const MovieTile = ({ movie }) => {
+const MovieTile = ({ movie, user }) => {
   const navigate = useNavigate();
   const navigateToMovies = () => {
-    navigate("/home/movie", { state: { movie: movie } });
+    console.log("user in movie tile", user);
+    navigate("/home/movie", { state: { movie: movie, user: user } });
   };
   return (
     <div className="movie-tile">

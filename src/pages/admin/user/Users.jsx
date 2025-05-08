@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import * as api from "../../../api";
 import "../home/home.css";
+import "./user.css";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -45,7 +46,16 @@ const Users = () => {
   }, []);
 
   return (
-    <div>
+    <div className="admin-home-users-page">
+      <div>
+        <div className="admin-home-page-detail">{users.length} USERS</div>
+        <div className="admin-home-page-detail">
+          {users.filter((user) => user.gender === "M").length} MALES
+        </div>
+        <div className="admin-home-page-detail">
+          {users.filter((user) => user.gender === "F").length} FEMALES
+        </div>
+      </div>
       <table>
         <thead>
           <tr className="table-row">

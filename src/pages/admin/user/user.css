@@ -1,0 +1,13 @@
+.admin-home-users-page {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 40px;
+}
+
+.admin-home-page-detail {
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    margin-left: 0;
+}

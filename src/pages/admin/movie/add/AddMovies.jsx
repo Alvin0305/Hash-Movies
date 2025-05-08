@@ -26,6 +26,8 @@ const AddMovies = () => {
   const [allGenres, setAllGenres] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState({});
   const [submitting, setSubmitting] = useState(false);
+  const [allPlatforms, setAllPlatforms] = useState([]);
+  const [platforms, setPlatforms] = useState({});
 
   const navigate = useNavigate();
 
@@ -33,16 +35,26 @@ const AddMovies = () => {
     const fetchAllInitialData = async () => {
       setLoading(true);
       try {
-        const genreResponse = await api.fetchGenres();
+        const [genreResponse, platformResponse] = await Promise.all([
+          api.fetchGenres(),
+          api.fetchPlatforms(),
+        ]);
         setAllGenres(genreResponse.data);
+        setAllPlatforms(platformResponse.data.platforms);
 
         const initialSelectedGenres = {};
+        const initialPlatforms = {};
         genreResponse.data.forEach((genre) => {
           initialSelectedGenres[genre._id] = false;
         });
+        platformResponse.data.platforms.forEach((platform) => {
+          initialPlatforms[platform._id] = false;
+        });
 
         setSelectedGenres(initialSelectedGenres);
+        setPlatforms(initialPlatforms);
         console.log(initialSelectedGenres);
+        console.log(initialPlatforms);
       } catch (err) {
         console.log("genre fetch error: ", err.message);
       } finally {
@@ -68,13 +80,24 @@ const AddMovies = () => {
     }));
   };
 
+  const handlePlatformChange = (platformId) => {
+    setPlatforms((prev) => ({
+      ...prev,
+      [platformId]: !prev[platformId],
+    }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const genreIds = Object.keys(selectedGenres).filter(
       (id) => selectedGenres[id]
     );
+    const platformIds = Object.keys(platforms).filter((id) => platforms[id]);
+
     console.log(genreIds);
+    console.log(platformIds);
+
     const data = new FormData();
     if (file) {
       data.append("image", file);
@@ -96,12 +119,12 @@ const AddMovies = () => {
 
     data.append("genres", JSON.stringify(genreIds));
     data.append("actors", JSON.stringify(formData.actors) || []);
-    data.append("platforms", JSON.stringify(formData.platforms) || []);
+    data.append("platforms", JSON.stringify(platformIds) || []);
 
     try {
       const response = await api.createMovie(data);
       console.log("Movie created:", response.data);
-      navigate(-1);
+      navigate("/admin/home");
     } catch (error) {
       console.error("Error creating movie:", error);
       if (error.response) {
@@ -215,7 +238,7 @@ const AddMovies = () => {
               <input
                 id="duration"
                 name="duration"
-                type="number" // Use type="number" for better UX
+                type="number" 
                 value={formData.duration}
                 onChange={handleChange}
                 className="add-movie-field"
@@ -257,7 +280,7 @@ const AddMovies = () => {
               <input
                 id="trailer"
                 name="trailer"
-                type="url" // Use type="url" for better UX
+                type="url" 
                 value={formData.trailer}
                 onChange={handleChange}
                 className="add-movie-field add-movie-trailer-field"
@@ -267,11 +290,22 @@ const AddMovies = () => {
             <label className="add-movie-label">GENRES</label>
             <div className="add-movie-genres">
               {allGenres.map((genre) => (
-                <Genre // Assuming your Genre component handles its own click and selected state display
+                <Genre 
                   key={genre._id}
-                  genre={genre.name} // Pass the name to display
+                  genre={genre.name}
                   selected={selectedGenres[genre._id] || false}
                   onAdd={() => handleGenreChange(genre._id)}
+                />
+              ))}
+            </div>
+            <label className="add-movie-label">PLATFORMS</label>
+            <div className="add-movie-genres">
+              {allPlatforms.map((platform) => (
+                <Genre 
+                  key={platform._id}
+                  genre={platform.name}
+                  selected={platforms[platform._id] || false}
+                  onAdd={() => handlePlatformChange(platform._id)}
                 />
               ))}
             </div>
@@ -293,7 +327,7 @@ const AddMovies = () => {
                 className="add-movie-cancel-button"
                 onClick={(e) => {
                   e.preventDefault();
-                  // navigate(-1); // If using react-router-dom
+                  navigate("/admin/home"); 
                 }}
                 disabled={submitting}
               >

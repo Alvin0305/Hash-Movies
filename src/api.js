@@ -50,6 +50,7 @@ export const deletePlatform = (id) => API.delete(`/platforms/${id}`);
 
 // Reviews
 export const fetchReviews = () => API.get("/reviews");
+export const fetchReviewsByMovie = (id) => API.get(`/reviews/movie/${id}`);
 export const createReview = (reviewData) => API.post("/reviews", reviewData);
 
 export const fetchWatchList = (id) => API.get(`/users/${id}/watchList`);

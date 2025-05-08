@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import "./utils.css";
 import MovieTile from "../components/MovieTile";
 
-const ScrollPane = ({ movies }) => {
+const ScrollPane = ({ movies, user }) => {
   return (
     <div className="scroll-pane">
       {movies?.map((movie, index) => (
-        <MovieTile movie={movie} key={index} />
+        <MovieTile movie={movie} key={index} user={user} />
       ))}
     </div>
   );

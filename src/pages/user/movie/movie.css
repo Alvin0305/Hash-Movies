@@ -121,6 +121,34 @@
     background-color: #454545;
 }
 
+.movie-page-review-session {
+    width: 100%;
+}
+
+.movie-review-form {
+    display: flex;
+    width: 100%;
+}
+
+.movie-review-field {
+    flex: 1;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid gray;
+    font-size: medium;
+    color: white;
+    margin: 0px 10px;
+}
+
+.movie-review-send-button {
+    padding: 20px 30px;
+    background-color: #EE6D00;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    font-size: large;
+}
+
 @media (max-width: 568px) {
 
     .movie-page {

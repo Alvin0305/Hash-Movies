@@ -41,6 +41,7 @@ const HomePage = () => {
   };
 
   useEffect(() => {
+    console.log("user in home page:", user);
     const fetchAllData = async () => {
       try {
         setData((prev) => ({ ...prev, loading: true }));
@@ -85,22 +86,22 @@ const HomePage = () => {
       </button>
       <div className="home-page-contents">
         <div ref={trendingRef}>
-          <TrendingSession movies={data.trendingMovies} />
+          <TrendingSession movies={data.trendingMovies} user={user}/>
         </div>
         <div ref={featuredRef}>
-          <FeaturedSession movies={data.featuredMovies} />
+          <FeaturedSession movies={data.featuredMovies} user={user}/>
         </div>
         <div ref={genresRef}>
-          <GenresSession genres={data.genres} />
+          <GenresSession genres={data.genres} user={user}/>
         </div>
         <div ref={languagesRef}>
-          <LanguagesSession />
+          <LanguagesSession user={user}/>
         </div>
         <div>
-          <UserGenres genres={data.userGenres} />
+          <UserGenres genres={data.userGenres} user={user}/>
         </div>
         <div>
-          <UserLanguages languages={data.prefLanguages} />
+          <UserLanguages languages={data.prefLanguages} user={user}/>
         </div>
       </div>
     </div>

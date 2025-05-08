@@ -78,3 +78,29 @@ table {
     color: #111;
     transform: scale(1.1);
 }
+
+.admin-home-page-nav-bar {
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    display: flex;
+    margin-bottom: 40px;
+}
+
+.admin-home-page-nav-button {
+    height: 100%;
+    flex: 1;
+    font-size: 30px;
+    font-family: Hanuman, 'Serif';
+    padding: 20px;
+    background-color: transparent;
+    color: white;
+    border: none;
+}
+
+.admin-home-page {
+    padding: 50px;
+}
+
+.admin-home-page-nav-button:hover {
+    background-color: #171717;
+}
