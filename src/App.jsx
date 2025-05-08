@@ -21,6 +21,7 @@ import AddPlatform from "./pages/admin/platforms/add/AddPlatform";
 import UpdatePlatform from "./pages/admin/platforms/update/UpdatePlatform";
 import AddActor from "./pages/admin/actors/add/AddActor";
 import UpdateActor from "./pages/admin/actors/update/UpdateActor";
+import ActorPage from "./pages/user/actor/ActorPage";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/home" element={<HomePage />} />
           <Route path="/home/movie" element={<MoviePage />} />
           <Route path="/home/genre" element={<GenrePage />} />
+          <Route path="/home/actor" element={<ActorPage />} />
           <Route path="/user" element={<UserPage />} />
           <Route path="/loading" element={<LoadingPage />} />
           <Route path="/home/language" element={<LanguagePage />} />

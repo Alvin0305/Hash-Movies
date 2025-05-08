@@ -309,6 +309,9 @@ const AddMovies = () => {
                 />
               ))}
             </div>
+            <div className="add-movie-tables">
+
+            </div>
             <div className="add-movie-bottom-label-div">
               <label htmlFor="storyline">STORY LINE</label>
               <textarea

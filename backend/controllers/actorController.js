@@ -8,7 +8,18 @@ exports.createActor = async (req, res) => {
     if (existingActor)
       return res.status(400).json({ error: "Actor already exists" });
 
-    const actor = new Actor(req.body);
+    const actorData = {
+      name: req.body.name,
+      debutMovie: req.body.debutMovie,
+      languages: req.body.languages,
+      mostFamousMovies: req.body.mostFamousMovies,
+    };
+    if (req.file) {
+      actorData.image = `/uploads/${req.file.filename}`;
+    } else {
+      actorData.image = `/uploads/default-actor.jpg`;
+    }
+    const actor = new Actor(actorData);
     await actor.save();
 
     if (req.body.debutMovie) {

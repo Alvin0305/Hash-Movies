@@ -5,6 +5,7 @@ const Actor = require("../models/Actor");
 
 exports.getAllMovies = async (req, res) => {
   try {
+    console.log("getting movies");
     const { isFeatured, isTrending, genre, actor, platform, title, language } =
       req.query;
     const filter = {};

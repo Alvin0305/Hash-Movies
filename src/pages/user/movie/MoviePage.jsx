@@ -18,12 +18,14 @@ import {
 import FlowPane from "../home/utils/FlowPane";
 import ScrollPane from "../home/utils/ScrollPane";
 import Review from "./components/Review";
+import ActorsScrollPane from "../home/utils/ActorsScrollPane";
 
 const MoviePage = () => {
   const location = useLocation();
   const movie = location.state.movie || {};
   const user = location.state.user || {};
   const navigate = useNavigate();
+  const actors = movie.actors || [];
 
   const [relatedMovies, setRelatedMovies] = useState([]);
   const [rated, setRated] = useState(0);
@@ -376,6 +378,8 @@ const MoviePage = () => {
         </div>
         <h1>More Like this</h1>
         <ScrollPane movies={relatedMovies} user={user} />
+        <h1>Actors</h1>
+        <ActorsScrollPane actors={actors} user={user}/>
         <div className="movie-page-review-session">
           <h2>REVIEW SESSION</h2>
           <form action="" className="movie-review-form">

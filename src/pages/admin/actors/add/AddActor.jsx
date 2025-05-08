@@ -57,13 +57,14 @@ const AddActor = () => {
     data.append("languages", langs);
     data.append("mostFamousMovies", [formData.debutMovie]);
     if (file) {
+      console.log("file got");
       data.append("image", file);
     }
 
     try {
       const response = await api.createActor(data);
       console.log("response:", response.data);
-        navigate("/admin/home");
+      navigate("/admin/home");
     } catch (error) {
       console.error("Error creating actor:", error);
       if (error.response) {

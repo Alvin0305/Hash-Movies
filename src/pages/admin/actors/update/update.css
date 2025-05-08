@@ -1,0 +1,37 @@
+.add-actor-tables-div {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.update-actor-table {
+    margin-left: 40px;
+}
+
+.actor-table-button {
+    padding: 5px;
+    border: none;
+    color: white;
+    background-color: transparent;
+    font-size: 30px;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.actor-table-button:hover {
+    transform: scale(1.1);
+    background-color: #424242;
+}
+
+.table-actor-add-button {
+    color: green;
+}
+
+.table-actor-minus-button {
+    color: red;
+}
