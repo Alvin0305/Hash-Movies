@@ -1,21 +1,3 @@
-.home-page {
-    display: flex;
-    overflow: hidden;
-    height: 100vh;
-}
-
-.home-page-contents {
-    overflow-y: auto;
-    padding: 20px;
-    margin: 10px;
-}
-
-.home-page-sub-heading {
-    padding: 10px;
-    border-bottom: 1px solid gray;
-}
-
-
 .large-tile {
     position: relative;
     display: flex;
@@ -53,7 +35,7 @@
 .scroll-pane {
     display: flex;
     gap: 20px;
-    padding-bottom: 30px;
+    margin-bottom: 30px;
     overflow-x: auto;
 }
 
@@ -86,7 +68,7 @@
 
 .movie-tile-image {
     height: 300px;
-    width: 200px;
+    width: auto;
     border-radius: 10px;
 }
 
@@ -101,54 +83,69 @@
     padding: 5px 10px;
 }
 
-.home-page-languages-div {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.language-tile {
-    background-color: #EE6D00;
-    padding: 16px 40px;
-    margin: 10px;
-    border-radius: 10px;
-    font-size: 15px;
-    cursor: pointer;
-}
-
-.language-tile-text {
-    margin: 0px;
-}
-
-.home-page-text {
-    margin-left: 40px;
-}
-
-.language-tile:hover {
-    background-color: #DD5C00;
-    transform: scale(1.01);
-}
-
 .liked-page, .viewed-page, .watchList-page {
     padding: 20px;
     padding-top: 0;
 }
 
-.home-search-button {
+.actor-tile {
+    height: 200px;
+    width: auto;
+    border-radius: 5px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.actor-tile-image {
+    height: 100%;
+    width: auto;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.actor-tile-text {
     position: absolute;
-    top: 20px;
-    right: 40px;
-    background-color: transparent;
-    border: none;
-    z-index: 1;
-    padding: 10px;
+    bottom: 5px;
+    right: 5px;
+    margin-bottom: 0;
+    box-sizing: border-box;
+    margin: 0;
+    background-color: #242424;
+    padding: 5px 10px;
     border-radius: 5px;
 }
 
-.home-search-button:hover {
-    background-color: #424242;
-}
-
 @media (max-width: 568px) {
+
+    .flow-pane  {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0;
+    }
+
+    .flow-pane .movie-tile {
+        flex: 0 1 50%;
+        max-width: 50%;
+        box-sizing: border-box;
+        padding: 5px;
+    }
+
+    .flow-pane .movie-tile-image {
+        width: 100%;
+        height: auto;
+    }
+
+    .scroll-pane .movie-tile {
+        width: auto;
+        height: 180px;
+        flex-shrink: 0;
+    }
+
+    .scroll-pane .movie-tile-image {
+        width: 100%;
+        height: auto;
+    }
+
     .large-tile {
         width: 100%;
     }
@@ -156,6 +153,15 @@
     .large-tile-image {
         width: 100%;
         height: auto;
+        margin-bottom: 10px;
+    }
+
+    .large-tile-text {
+        font-size: 12px;
+    }
+
+    .movie-tile-text {
+        font-size: 12px;
     }
 }
 

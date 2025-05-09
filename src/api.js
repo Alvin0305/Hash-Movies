@@ -21,6 +21,8 @@ export const createMovie = (movieData) =>
 export const updateMovie = (id, movieData) =>
   API.put(`/movies/${id}`, movieData);
 export const deleteMovie = (id) => API.delete(`/movies/${id}`);
+export const likeMovie = (id) => API.patch(`/movies/${id}/like`);
+export const unlikeMovie = (id) => API.patch(`/movies/${id}/unlike`);
 
 // Actors
 export const fetchActors = () => API.get("/actors");

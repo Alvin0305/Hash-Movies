@@ -8,14 +8,14 @@ const ActorTile = ({ actor, user }) => {
     navigate("/home/actor", { state: { actor: actor, user: user } });
   };
   return (
-    <div className="large-tile">
+    <div className="actor-tile">
       <img
         src={`/backend/${actor.image}`}
         alt="No internet"
-        className="large-tile-image"
+        className="actor-tile-image"
         onClick={navigateToActorPage}
       />
-      <h1 className="large-tile-text">{actor.name}</h1>
+      <h1 className="actor-tile-text">{actor.name}</h1>
     </div>
   );
 };

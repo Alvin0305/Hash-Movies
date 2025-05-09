@@ -10,7 +10,7 @@ const Dashboard = ({
   scrollToPlatforms,
   scrollToActors,
 }) => {
-  const size = 40;
+  const size = 20;
 
   const navigate = useNavigate();
   const handleLogout = () => {

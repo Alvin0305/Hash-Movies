@@ -17,7 +17,6 @@ exports.getAllMovies = async (req, res) => {
       platforms,
       "platforms[]": platformsArray,
       title,
-      titleLike,
       language,
     } = req.query;
     const filter = {};
@@ -105,26 +104,11 @@ exports.createMovie = async (req, res) => {
     if (req.file) {
       movieData.image = `/uploads/${req.file.filename}`;
     } else {
-      // Optional: set a default image if none is uploaded
-      // movieData.image = '/uploads/default-movie.png';
+      movieData.image = `/uploads/default-movie.jpg`;
     }
 
     const movie = new Movie(movieData);
     await movie.save();
-
-    if (movieData.actors && movieData.actors.length > 0) {
-      await Actor.updateMany(
-        { _id: { $in: movieData.actors } },
-        { $addToSet: { films: movie._id } }
-      );
-    }
-
-    if (movieData.genres && movieData.genres.length > 0) {
-      await Genre.updateMany(
-        { _id: { $in: movieData.genres } },
-        { $addToSet: { movies: movie._id } }
-      );
-    }
 
     res.status(201).json(movie);
   } catch (err) {
@@ -171,12 +155,7 @@ exports.deleteMovie = async (req, res) => {
 
     await Actor.updateMany(
       { films: movie._id },
-      { $pull: { films: movie._id, mostFamousMovies: movie._id } }
-    );
-
-    await Genre.updateMany(
-      { movies: movie._id },
-      { $pull: { movies: movie._id } }
+      { $pull: { mostFamousMovies: movie._id } }
     );
 
     res.json({ message: "Movie succesfully deleted" });
@@ -194,6 +173,20 @@ exports.likeMovie = async (req, res) => {
     );
 
     if (!movie) return res.status(404).json({ error: "Movie not found" });
+    res.json(movie);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+exports.unlikeMovie = async (req, res) => {
+  try {
+    const movie = await Movie.findByIdAndUpdate(
+      req.params.id,
+      { $inc: { likes: -1 } },
+      { new: true }
+    );
+    if (!movie) res.status(404).json({ error: "Movie not found" });
     res.json(movie);
   } catch (err) {
     res.status(500).json({ error: err.message });

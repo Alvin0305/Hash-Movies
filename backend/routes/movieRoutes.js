@@ -12,5 +12,6 @@ router.post("/", upload.single("image"), parseFormData, movieController.createMo
 router.put("/:id", movieController.updateMovie);
 router.delete("/:id", movieController.deleteMovie);
 router.patch("/:id/like", movieController.likeMovie);
+router.patch("/:id/unlike", movieController.unlikeMovie);
 
 module.exports = router;

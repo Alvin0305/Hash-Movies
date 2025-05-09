@@ -46,10 +46,17 @@ const MoviePage = () => {
     console.log(user.viewed.includes(movie._id));
     const getMovies = async () => {
       try {
-        movie.genres.map(async (genre) => {
-          const responce = await api.fetchMovies({ genres: genre._id });
-          setRelatedMovies(...relatedMovies, responce.data);
+        const genreIds = [];
+        movie.genres.forEach((genre) => genreIds.push(genre._id));
+        const response = await api.fetchMovies({
+          genres: genreIds,
+          matchType: "or",
         });
+        console.log(response.data);
+        const filteredFilms = response.data.filter(
+          (mov) => movie._id !== mov._id
+        );
+        setRelatedMovies(filteredFilms);
       } catch (err) {
         console.log("fetch related movie error:", err.message);
       }
@@ -141,12 +148,24 @@ const MoviePage = () => {
     }
   };
 
-  const handleLikeButton = () => {
+  const handleLikeButton = async () => {
     console.log("like button pressed");
     if (user.liked.includes(movie._id)) {
       removeFromLiked();
+      try {
+        const response = await api.unlikeMovie(movie._id);
+        console.log(response.data);
+      } catch (err) {
+        console.log("unlike error", err.message);
+      }
     } else {
       addToLiked();
+      try {
+        const response = await api.likeMovie(movie._id);
+        console.log(response.data);
+      } catch (err) {
+        console.log("like error", err.message);
+      }
     }
   };
 
@@ -226,49 +245,14 @@ const MoviePage = () => {
     deleteRev(rev);
   };
 
-  const likeReview = (rev) => {
-    const like = async (rev) => {
-      try {
-        const reviewData = {
-          user: rev.user._id,
-          movie: rev.movie._id,
-          review: rev.review,
-          likes: rev.likes + 1,
-          dislikes: rev.dislikes,
-          rating: rev.rating,
-        };
-        const response = await api.updateReview(rev._id, reviewData);
-        console.log(response);
-      } catch (err) {
-        console.log("like review error", err.message);
-      }
-    };
-    like(rev);
-  };
-
-  const dislikeReview = (rev) => {
-    const dislike = async (rev) => {
-      try {
-        const reviewData = {
-          user: rev.user._id,
-          movie: rev.movie._id,
-          review: rev.review,
-          likes: rev.likes,
-          dislikes: rev.dislikes + 1,
-          rating: rev.rating,
-        };
-        const response = await api.updateReview(rev._id, reviewData);
-        console.log(response);
-        setReviews((prevReviews) => {
-          prevReviews.map((r) =>
-            r._id === rev._id ? { ...r, dislikes: r.dislikes + 1 } : r
-          );
-        });
-      } catch (err) {
-        console.log("dislike review error", err.message);
-      }
-    };
-    dislike(rev);
+  const convertToEmbedUrl = (url) => {
+    const regex = /(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/;
+    const match = url.match(regex);
+    console.log(
+      "new url",
+      match ? `https://www.youtube.com/embed/${match[1]}` : ""
+    );
+    return match ? `https://www.youtube.com/embed/${match[1]}` : "";
   };
 
   return (
@@ -282,8 +266,12 @@ const MoviePage = () => {
         >
           <FaBackward color="white" size={30} />
         </button>
-        <h1>{movie.title}</h1>
-        <img src={`/backend/${movie.image}`} alt="No internet" className="movie-page-image" />
+        <h1 className="movie-page-title">{movie.title}</h1>
+        <img
+          src={`/backend/${movie.image}`}
+          alt="No internet"
+          className="movie-page-image"
+        />
         <p className="movie-page-storyline">{movie.storyline}</p>
         <div className="movie-page-sidebar-details">
           <h4 className="movie-page-sidebar-detail">
@@ -327,59 +315,43 @@ const MoviePage = () => {
             }
           })}
         </div>
+        <div className="movie-page-action-buttons">
+          <button className="movie-page-sidebar-button movie-page-like-button">
+            <div onClick={handleViewButton}>
+              <FaEye size={20} color={isViewed ? "green" : "white"} />
+              <h4 className="movie-page-sidebar-button-text">Viewed</h4>
+            </div>
+          </button>
+          <button className="movie-page-sidebar-button">
+            <div onClick={handleWatchListButton}>
+              <FaPlus size={20} color={isInWatchList ? "green" : "white"} />
+              <h4 className="movie-page-sidebar-button-text">WatchList</h4>
+            </div>
+          </button>
+          <button className="movie-page-sidebar-button movie-page-like-button">
+            <div onClick={handleLikeButton}>
+              <FaHeart size={20} color={isLiked ? "green" : "white"} />
+              <h4 className="movie-page-sidebar-button-text">Like</h4>
+            </div>
+          </button>
+        </div>
       </div>
       <div className="movie-page-content">
-        <h2>Actions</h2>
-        <div className="movie-page-sidebar-buttons">
-          <div>
-            <button className="movie-page-sidebar-button movie-page-like-button">
-              <div onClick={handleViewButton}>
-                <FaEye size={40} color={isViewed ? "green" : "white"} />
-                <h4 className="movie-page-sidebar-button-text">Viewed</h4>
-              </div>
-            </button>
-            <button className="movie-page-sidebar-button">
-              <div onClick={handleWatchListButton}>
-                <FaPlus size={40} color={isInWatchList ? "green" : "white"} />
-                <h4 className="movie-page-sidebar-button-text">WatchList</h4>
-              </div>
-            </button>
-            <button className="movie-page-sidebar-button movie-page-like-button">
-              <div onClick={handleLikeButton}>
-                <FaHeart size={40} color={isLiked ? "green" : "white"} />
-                <h4 className="movie-page-sidebar-button-text">Like</h4>
-              </div>
-            </button>
+        {movie.trailer !== "" && (
+          <div className="trailer-wrapper">
+            <iframe
+              src={convertToEmbedUrl(movie.trailer)}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
           </div>
+        )}
 
-          <div>
-            {[1, 2, 3, 4, 5].map((num, index) => {
-              if (index < rated) {
-                return (
-                  <FaStar
-                    size={40}
-                    className="selected-star"
-                    onClick={() => setRated(num)}
-                    key={index}
-                  />
-                );
-              } else {
-                return (
-                  <FaStar
-                    size={40}
-                    className="unselected-star"
-                    onClick={() => setRated(num)}
-                    key={index}
-                  />
-                );
-              }
-            })}
-          </div>
-        </div>
-        <h1>More Like this</h1>
+        <h1>MORE LIKE THIS</h1>
         <ScrollPane movies={relatedMovies} user={user} />
-        <h1>Actors</h1>
-        <ActorsScrollPane actors={actors} user={user}/>
+        <h1>ACTORS</h1>
+        <ActorsScrollPane actors={actors} user={user} />
         <div className="movie-page-review-session">
           <h2>REVIEW SESSION</h2>
           <form action="" className="movie-review-form">
@@ -404,35 +376,14 @@ const MoviePage = () => {
             {reviews.map((review, index) => (
               <div key={index} className="review-div">
                 <Review review={review} />
-                <div className="review-buttons">
-                  <div className="review-button-value">
-                    <button
-                      className="review-button"
-                      onClick={() => likeReview(review)}
-                    >
-                      <FaThumbsUp />
-                    </button>
-                    <h5 className="review-value">{review.likes}</h5>
-                  </div>
-                  <div className="review-button-value">
-                    <button
-                      className="review-button"
-                      onClick={() => dislikeReview(review)}
-                    >
-                      <FaThumbsDown />
-                    </button>
-                    <h5 className="review-value">{review.dislikes}</h5>
-                  </div>
-
-                  {review.user._id === user._id && (
-                    <button
-                      onClick={() => deleteReview(review)}
-                      className="review-delete-button"
-                    >
-                      <FaTimes size={20} color="red" />
-                    </button>
-                  )}
-                </div>
+                {review.user._id === user._id && (
+                  <button
+                    onClick={() => deleteReview(review)}
+                    className="review-delete-button"
+                  >
+                    <FaTimes size={20} color="red" />
+                  </button>
+                )}
               </div>
             ))}
           </div>

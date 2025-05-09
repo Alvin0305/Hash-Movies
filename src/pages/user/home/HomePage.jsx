@@ -11,6 +11,7 @@ import LoadingPage from "../loading/LoadingPage";
 import UserLanguages from "./components/UserLanguages/UserLanguages";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
+import "./home.css";
 
 const HomePage = () => {
   const genresRef = useRef(null);

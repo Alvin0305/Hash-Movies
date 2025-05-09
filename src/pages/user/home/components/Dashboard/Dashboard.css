@@ -5,11 +5,12 @@
     justify-content: space-between;
     height: 100vh;
     flex-shrink: 0;
-    background-color: #121240;
+    background-color: #000010;
 }
 
 .dashboard-profile {
     display: flex;
+    margin-top: 20px;
 }
 
 .dashboard-avatar {
@@ -25,13 +26,14 @@
 .dashboard-text {
     font-size: medium;
     margin: 0;
-    margin-left: 20px;
+    margin-left: 40px;
+    margin-right: 60px;
 }
 
 .dashboard-username {
     font-size: x-large;
     font-weight: bold;
-    margin-left: 0;
+    margin-left: 30px;
 }
 
 .dashboard-buttons {
@@ -53,5 +55,5 @@
 }
 
 .dashboard-button:hover, .dashboard-avatar:hover {
-    transform: scale(1.11);
+    transform: scale(1.01);
 }

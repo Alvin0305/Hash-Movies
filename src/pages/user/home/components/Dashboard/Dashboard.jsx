@@ -33,7 +33,7 @@ const Dashboard = ({ genres, trending, featured, languages, user }) => {
       onMouseLeave={() => setShowText(false)}
     >
       <div className="dashboard-buttons">
-        <div className="dashboard-inner-div">
+        <div className="dashboard-inner-div dashboard-profile">
           <img
             src="/boy.png"
             width={40}
