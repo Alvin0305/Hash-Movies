@@ -1,0 +1,57 @@
+.dashboard {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    flex-shrink: 0;
+    background-color: #121240;
+}
+
+.dashboard-profile {
+    display: flex;
+}
+
+.dashboard-avatar {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dashboard-inner-div {
+    display: flex;
+    align-items: center;
+}
+
+.dashboard-text {
+    font-size: medium;
+    margin: 0;
+    margin-left: 20px;
+}
+
+.dashboard-username {
+    font-size: x-large;
+    font-weight: bold;
+    margin-left: 0;
+}
+
+.dashboard-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard-button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    padding: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    width: 100%;
+    font-family: Hanuman, 'Serif';
+}
+
+.dashboard-button:hover, .dashboard-avatar:hover {
+    transform: scale(1.11);
+}

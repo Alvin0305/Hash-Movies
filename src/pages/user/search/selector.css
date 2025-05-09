@@ -1,0 +1,25 @@
+
+.selector-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.selector-button:hover {
+    background-color: #777700;
+}
+
+.selected-selector-button {
+    background-color: green;
+    border: none;
+}
+
+.selector-text {
+    margin: 0px;
+    margin-left: 10px;
+}

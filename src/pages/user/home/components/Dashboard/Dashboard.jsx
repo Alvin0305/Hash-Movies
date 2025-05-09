@@ -1,6 +1,17 @@
-import React from "react";
-import "../../utils/utils.css";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {
+  FaEye,
+  FaFire,
+  FaHeart,
+  FaLanguage,
+  FaRegAddressBook,
+  FaRegBookmark,
+  FaStarAndCrescent,
+} from "react-icons/fa";
+import { MdBookmarkBorder, MdLogout, MdStar, MdStars } from "react-icons/md";
+import { RiMovie2Line } from "react-icons/ri";
+import "./Dashboard.css";
 
 const Dashboard = ({ genres, trending, featured, languages, user }) => {
   const navigate = useNavigate();
@@ -8,62 +19,94 @@ const Dashboard = ({ genres, trending, featured, languages, user }) => {
     navigate("/login");
   };
 
+  const size = 25;
+
+  const [showText, setShowText] = useState(false);
+
   return (
-    <div className="dashboard">
-      <div className="dashboard-top">
-        <div className="dashboard-profile-area">
-          <div className="dashboard-avatar-wrapper">
-            <img
-              src="/boy.png"
-              alt="No internet"
-              className="dashboard-avatar"
-              onClick={() => navigate("/user", { state: { user: user } })}
-            />
-          </div>
-          <h1>{user.username.toUpperCase()}</h1>
+    <div
+      className="dashboard"
+      onMouseEnter={() => {
+        console.log("mouse entered");
+        setShowText(true);
+      }}
+      onMouseLeave={() => setShowText(false)}
+    >
+      <div className="dashboard-buttons">
+        <div className="dashboard-inner-div">
+          <img
+            src="/boy.png"
+            width={40}
+            alt="No internet"
+            className="dashboard-avatar"
+            onClick={() => navigate("/user", { state: { user: user } })}
+          />
+          {showText && (
+            <h1 className="dashboard-username dashboard-text">
+              {user.username.toUpperCase()}
+            </h1>
+          )}
         </div>
-        <div className="dashboard-buttons">
+        <div className="dashboard-inner-div">
           <button
-            className="dashboard-profile-button"
+            className="dashboard-button"
             onClick={() => navigate("/home/liked", { state: { user: user } })}
           >
-            Liked
+            <FaHeart size={size} color="red" />
+            {showText && <h1 className="dashboard-text">LIKED</h1>}
           </button>
+        </div>
+        <div className="dashboard-inner-div">
           <button
-            className="dashboard-profile-button"
+            className="dashboard-button"
             onClick={() => navigate("/home/viewed", { state: { user: user } })}
           >
-            Viewed
+            <FaEye size={size} color="white" />
+            {showText && <h1 className="dashboard-text">VIEWED</h1>}
           </button>
+        </div>
+        <div className="dashboard-inner-div">
           <button
-            className="dashboard-profile-button"
-            onClick={() => navigate("/home/watchList", { state: { user: user } })}
+            className="dashboard-button"
+            onClick={() =>
+              navigate("/home/watchList", { state: { user: user } })
+            }
           >
-            Watch List
+            <FaRegBookmark size={size} />
+            {showText && <h1 className="dashboard-text">WATCHLIST</h1>}
           </button>
+        </div>
+        <div className="dashboard-inner-div">
           <button className="dashboard-button" onClick={trending}>
-            Trending Movies
+            <FaFire color="orange" size={size} />
+            {showText && <h1 className="dashboard-text">TRENDING</h1>}
           </button>
+        </div>
+        <div className="dashboard-inner-div">
           <button className="dashboard-button" onClick={featured}>
-            Featured Movies
+            <MdStar color="gold" size={size} />
+            {showText && <h1 className="dashboard-text">FEATURED</h1>}
           </button>
+        </div>
+        <div className="dashboard-inner-div">
           <button className="dashboard-button" onClick={genres}>
-            Genres
+            <RiMovie2Line size={size} />
+            {showText && <h1 className="dashboard-text">GENRES</h1>}
           </button>
-          <button
-            className="dashboard-button dashboard-button-last"
-            onClick={languages}
-          >
-            Languages
+        </div>
+        <div className="dashboard-inner-div">
+          <button className="dashboard-button" onClick={languages}>
+            <FaLanguage size={size} />
+            {showText && <h1 className="dashboard-text">LANGUAGES</h1>}
           </button>
         </div>
       </div>
-      <button
-        className="dashboard-button dashboard-button-last"
-        onClick={handleLogout}
-      >
-        Log out
-      </button>
+      <div className="dashboard-inner-div">
+        <button className="dashboard-button" onClick={handleLogout}>
+          <MdLogout size={size} />
+          {showText && <h1 className="dashboard-text">LOG OUT</h1>}
+        </button>
+      </div>
     </div>
   );
 };

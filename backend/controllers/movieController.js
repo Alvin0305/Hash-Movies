@@ -6,15 +6,53 @@ const Actor = require("../models/Actor");
 exports.getAllMovies = async (req, res) => {
   try {
     console.log("getting movies");
-    const { isFeatured, isTrending, genre, actor, platform, title, language } =
-      req.query;
+    const {
+      isFeatured,
+      isTrending,
+      genre,
+      genres,
+      "genres[]": genresArray,
+      actor,
+      platform,
+      platforms,
+      "platforms[]": platformsArray,
+      title,
+      titleLike,
+      language,
+    } = req.query;
     const filter = {};
+
+    const matchType = req.query.matchType || "and";
+
+    console.log(req.query);
 
     if (isTrending) filter.isTrending = isTrending === "true";
     if (isFeatured) filter.isFeatured = isFeatured === "true";
     if (genre) filter.genres = genre;
+    const finalGenres = genres || genresArray;
+    if (finalGenres) {
+      const genreList = Array.isArray(finalGenres)
+        ? finalGenres
+        : finalGenres.split(",").map((g) => g.trim());
+      if (matchType === "or") {
+        filter.genres = { $in: genreList };
+      } else {
+        filter.genres = { $all: genreList };
+      }
+    }
     if (actor) filter.actors = actor;
     if (platform) filter.platform = platform;
+    const finalPlatforms = platforms || platformsArray;
+    if (finalPlatforms) {
+      const platformList = Array.isArray(finalPlatforms)
+        ? finalPlatforms
+        : finalPlatforms.split(",").map((g) => g.trim());
+      if (matchType === "or") {
+        filter.platforms = { $in: platformList };
+      } else {
+        filter.platforms = { $all: platformList };
+      }
+    }
     if (title) filter.title = { $regex: title, $options: "i" };
     if (language) filter.language = language;
 

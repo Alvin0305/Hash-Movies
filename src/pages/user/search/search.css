@@ -1,36 +1,69 @@
 .search-page {
-    display: flex;
-    justify-content: center;
     width: 100vw;
-    height: 100vh;
+    box-sizing: border-box;
+    min-height: 100vh;
 }
 
-.search-bar-form {
-    width: 40%;
+.search-page-form {
+    padding: 40px;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
 }
 
 .search-bar-wrapper {
     width: 100%;
     display: flex;
-    align-items: center;
     justify-content: center;
-    border: 1px solid gray;
-    border-radius: 30px;
-}
-
-.search-icon {
-    padding: 16px 20px;
-    border-radius: 32px;
-}
-
-.search-icon:hover {
-    background-color: #171717;
 }
 
 .search-bar {
-    padding: 20px;
-    width: 100%;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    border: 2px solid gray;
+    padding: 0;
+    border-radius: 5px;
+    width: 400px;
+}
+
+.search-input {
     background-color: transparent;
     border: none;
+    padding: 20px;
+    flex: 1;
+    font-size: large;
+    color: white;
+}
+
+.search-icon {
+    height: 100%;
+    padding: 0px 14px;
+}
+
+.search-page-heading {
+    margin: 20px 0px;
     font-size: medium;
+}
+
+.search-page-selectors {
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+.search-page-select {
+    width: 120px;
+    margin-left: 20px; 
+    background-color: transparent;
+    padding: 0px 20px;
+    color: white;
+    font-size: large;
+    font-family: Hanuman, 'Serif';
+    border: none;
+}
+
+.search-page-movies {
+    box-sizing: border-box;
+    margin-top: 20px;
 }

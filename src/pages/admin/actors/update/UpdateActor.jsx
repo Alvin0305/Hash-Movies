@@ -176,7 +176,7 @@ const UpdateActor = () => {
     if (leftSortConfig.key === key && leftSortConfig.direction === "asc") {
       direction = "desc";
     }
-    setRightSortConfig({ key, direction });
+    setLeftSortConfig({ key, direction });
   };
 
   const handleRightSort = (key) => {

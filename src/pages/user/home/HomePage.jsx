@@ -80,28 +80,28 @@ const HomePage = () => {
       <Dashboard {...scrollTo} user={user} />
       <button
         className="home-search-button"
-        onClick={() => navigate("/home/search")}
+        onClick={() => navigate("/home/search", { state: { user: user } })}
       >
         <FaSearch size={40} color="white" />
       </button>
       <div className="home-page-contents">
         <div ref={trendingRef}>
-          <TrendingSession movies={data.trendingMovies} user={user}/>
+          <TrendingSession movies={data.trendingMovies} user={user} />
         </div>
         <div ref={featuredRef}>
-          <FeaturedSession movies={data.featuredMovies} user={user}/>
+          <FeaturedSession movies={data.featuredMovies} user={user} />
         </div>
         <div ref={genresRef}>
-          <GenresSession genres={data.genres} user={user}/>
+          <GenresSession genres={data.genres} user={user} />
         </div>
         <div ref={languagesRef}>
-          <LanguagesSession user={user}/>
+          <LanguagesSession user={user} />
         </div>
         <div>
-          <UserGenres genres={data.userGenres} user={user}/>
+          <UserGenres genres={data.userGenres} user={user} />
         </div>
         <div>
-          <UserLanguages languages={data.prefLanguages} user={user}/>
+          <UserLanguages languages={data.prefLanguages} user={user} />
         </div>
       </div>
     </div>
