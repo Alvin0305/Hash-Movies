@@ -11,21 +11,39 @@ const LikedPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchMovies = async () => {
+    const fetchMovies = async (likedMovies) => {
+      try {
+        if (likedMovies.length === 0) {
+          setMovies([]);
+        } else {
+          const likedMovieList = [];
+          likedMovies.forEach(async (id) => {
+            const response = await api.fetchMovieById(id);
+            console.log(response.data);
+            likedMovieList.push(response.data);
+          });
+          setMovies(likedMovieList);
+          setLoading(false);
+        }
+      } catch (err) {
+        console.log("error in fetching liked movies", err.message);
+      }
+    };
+
+    const fetchUser = async () => {
       try {
         console.log("user", user.user);
         const response = await api.fetchUser(user.user._id);
         console.log(response.data);
-        setMovies(response.data.liked);
-        setLoading(false);
+        fetchMovies(response.data.liked);
       } catch (err) {
         console.log("error", err.message);
       }
     };
-    fetchMovies();
+    fetchUser();
   }, []);
 
-  if (loading) return <LoadingPage />
+  if (loading) return <LoadingPage />;
 
   return (
     <div className="liked-page">
