@@ -33,17 +33,8 @@ const MoviePage = () => {
 
   const [userReview, setUserReview] = useState("");
 
-  const [isViewed, setIsViewed] = useState(user.viewed.includes(movie._id));
-  const [isLiked, setIsLiked] = useState(user.liked.includes(movie._id));
-  const [isInWatchList, setIsInWatchList] = useState(
-    user.watchList.includes(movie._id)
-  );
-
   useEffect(() => {
     console.log("user in movie page", user);
-    console.log(user.viewed);
-    console.log(movie._id);
-    console.log(user.viewed.includes(movie._id));
     const getMovies = async () => {
       try {
         const genreIds = [];
@@ -75,6 +66,22 @@ const MoviePage = () => {
     getMovies();
     getReviews();
   }, []);
+
+  const checkViewed = () => {
+    return Array.isArray(user?.viewed) && user.viewed.includes(movie._id);
+  };
+
+  const checkLiked = () => {
+    return Array.isArray(user?.liked) && user.liked.includes(movie._id);
+  };
+
+  const checkWatchList = () => {
+    return Array.isArray(user?.watchList) && user.watchList.includes(movie._id);
+  };
+
+  const [isViewed, setIsViewed] = useState(checkViewed());
+  const [isLiked, setIsLiked] = useState(checkLiked());
+  const [isInWatchList, setIsInWatchList] = useState(checkWatchList());
 
   const addToViewed = async () => {
     console.log("adding");
@@ -258,20 +265,8 @@ const MoviePage = () => {
   return (
     <div className="movie-page">
       <div className="movie-page-side-bar">
-        <button
-          className="movie-page-sidebar-back-button"
-          onClick={() => {
-            navigate("/home", { state: { user: user } });
-          }}
-        >
-          <FaBackward color="white" size={30} />
-        </button>
         <h1 className="movie-page-title">{movie.title}</h1>
-        <img
-          src={movie.image}
-          alt="No internet"
-          className="movie-page-image"
-        />
+        <img src={movie.image} alt="No internet" className="movie-page-image" />
         <p className="movie-page-storyline">{movie.storyline}</p>
         <div className="movie-page-sidebar-details">
           <h4 className="movie-page-sidebar-detail">
