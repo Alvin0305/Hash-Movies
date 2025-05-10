@@ -40,6 +40,7 @@ exports.createActor = async (req, res) => {
     }
     res.status(201).json(actor);
   } catch (err) {
+    console.log("creation of actor error: ", err);
     res.status(500).json({ error: err.message });
   }
 };
