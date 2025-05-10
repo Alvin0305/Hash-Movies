@@ -29,6 +29,7 @@ mongoose
 const allowedOrigins = [
   'http://localhost:5173', // Default Vite dev server port
   'http://localhost:3000', // Common CRA dev server port (just in case)
+  'https://hash-movies.onrender.com'
   // You can add your Render URL here later if needed for any specific cross-origin scenario
   // e.g., 'https://your-app-name.onrender.com'
 ];
