@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const actorController = require("../controllers/actorController");
 const upload = require("../middlewares/upload");
-const { parseFormData } = require("../middlewares/upload");
+const { parseFormData } = require("../middlewares/parseFormData");
 
 router.get("/", actorController.getAllActors);
 router.get("/search", actorController.searchActor);
