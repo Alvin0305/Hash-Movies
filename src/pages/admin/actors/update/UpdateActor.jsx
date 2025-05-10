@@ -206,7 +206,7 @@ const UpdateActor = () => {
   };
 
   return (
-    <div className="add-genre-page">
+    <div className="add-actor-page">
       <div className="add-actor-page-wrapper">
         <form action="" className="add-genre-page-wrapper">
           <div className="add-genre-image-div">
@@ -277,8 +277,8 @@ const UpdateActor = () => {
             </div>
           </div>
         </form>
-        <div className="add-actor-tables-div">
-          <table className="general-table">
+        <div className="add-movie-tables-div">
+          <table className="general-table update-movie-table">
             <thead>
               <tr>
                 <th className="table-head">#</th>
@@ -327,7 +327,7 @@ const UpdateActor = () => {
               })}
             </tbody>
           </table>
-          <table className="general-table update-actor-table">
+          <table className="general-table update-movie-table">
             <thead>
               <tr>
                 <th className="table-head">#</th>

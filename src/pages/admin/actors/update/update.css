@@ -35,3 +35,13 @@
 .table-actor-minus-button {
     color: red;
 }
+
+.add-actor-page {
+    box-sizing: border-box;       
+}
+
+@media (max-width: 568px) {
+    .add-actor-page {
+        padding: 20px;
+    }
+}

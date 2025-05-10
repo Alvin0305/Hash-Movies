@@ -61,9 +61,17 @@
 
     .home-search-button {
         size: 10px;
+        width: 10px;
+        height: 10px;
+        padding: 0px;
     }
 
     .home-page-sub-heading {
         font-size: 12px;
+    }
+
+    .home-page-contents {
+        padding: 0px;
+        margin: 10px;
     }
 }

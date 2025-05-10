@@ -240,7 +240,7 @@ const UpdateMovie = () => {
 
   return (
     <div className="update-movie-page">
-      <div>
+      <div className="update-movie-wrapper">
         <form className="update-movie-page-wrapper">
           <div className="update-movie-image-div">
             <img
@@ -469,7 +469,7 @@ const UpdateMovie = () => {
           </div>
         </form>
         <div className="add-movie-tables-div">
-          <table className="general-table">
+          <table className="general-table update-movie-table">
             <thead>
               <tr>
                 <th className="table-head">#</th>
@@ -505,7 +505,7 @@ const UpdateMovie = () => {
               })}
             </tbody>
           </table>
-          <table className="general-table update-actor-table">
+          <table className="general-table update-movie-table">
             <thead>
               <tr>
                 <th className="table-head">#</th>

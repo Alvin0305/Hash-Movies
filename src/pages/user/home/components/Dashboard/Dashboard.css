@@ -49,11 +49,49 @@
     cursor: pointer;
     display: flex;
     align-items: center;
-    /* justify-content: space-between; */
     width: 100%;
     font-family: Hanuman, 'Serif';
 }
 
 .dashboard-button:hover, .dashboard-avatar:hover {
     transform: scale(1.01);
+}
+
+@media (max-width: 568px) {
+    .dashboard {
+        width: 40px;
+        align-items: center;
+    }
+
+    .dashboard-buttons {
+        align-items: center;
+    }
+    
+    .dashboard-button {
+        size: 20px;
+        padding: 10px 5px;
+        width: fit-content;
+    }
+
+    .dashboard-avatar {
+        width: 20px;
+        height: 20px;
+    }
+
+    .dashboard-text {
+        display: none;
+    }
+
+    svg {
+        size: 10px;
+    }
+
+    path {
+        size: 10px;
+    }
+
+    .dashboard-icon {
+        width: 20px;
+        height: 20px;
+    }
 }

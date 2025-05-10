@@ -5,11 +5,17 @@
     justify-self: center;
     min-height: 100vh;
     width: 100vw;
+    box-sizing: border-box;
 }
 
 .update-movie-page-wrapper {
     display: flex;
     align-items: center;
+    box-sizing: border-box;
+}
+
+.update-movie-wrapper {
+    box-sizing: border-box;
 }
 
 .update-movie-image-div {
@@ -138,7 +144,24 @@ select option {
     flex-wrap: wrap;
 }
 
+.add-movie-tables-div {
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.update-movie-table {
+    width: fit-content;
+    margin-right: 40px;
+    justify-content: flex-start;
+}
+
 @media (max-width: 568px) {
+
+
+    .update-movie-table {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
     .update-movie-image-div {
         border-right: none;
         border-bottom: 1px solid gray;

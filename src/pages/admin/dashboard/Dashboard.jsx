@@ -2,6 +2,7 @@ import React from "react";
 import { FaFilm, FaTheaterMasks, FaUser, FaUserTie } from "react-icons/fa";
 import { MdConnectedTv, MdLogout } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import "./dashboard.css";
 
 const Dashboard = ({
   scrollToUsers,

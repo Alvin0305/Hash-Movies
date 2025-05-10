@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import "./utils.css";
 import MovieTile from "../components/MovieTile";
+import "./scrollpane.css";
 
 const ScrollPane = ({ movies, user }) => {
   return (

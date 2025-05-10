@@ -1,6 +1,5 @@
 table {
     border-collapse: collapse;
-    overflow-x: auto;
     height: fit-content;
     align-self: center;
     justify-self: center;
@@ -16,15 +15,17 @@ table {
     font-size: 20px;
     padding: 10px;
     margin: 0;
-}
-
-.table-row {
-    border-bottom: 1px solid gray;
+    white-space: nowrap;
 }
 
 .table-data {
     padding: 10px;
     margin: 0;
+    border-bottom: 1px solid gray;
+    white-space: nowrap;
+}
+
+.table-row {
     border-bottom: 1px solid gray;
 }
 
@@ -54,9 +55,11 @@ table {
     background-color: #520;
 }
 
-.genre-table {
+.general-table {
     border-collapse: collapse;
-
+    width: 100%;
+    display: block;
+    overflow-x: auto;
 }
 
 .admin-add-button {
@@ -84,34 +87,39 @@ table {
 
 .admin-home-page {
     display: flex;
-    padding-left: 0;
-    padding-top: 0;
-    overflow-y: auto;
-}
-
-.admin-page-dashboard {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    height: 100vh;
-    width: 60px;
-    background-color: #121240;
-    overflow-y: hidden;
-    position: fixed;
-    top: 0;
-    left: 0;
+    overflow-x: hidden;
+    width: 100vw;
+    box-sizing: border-box;
 }
 
 .admin-home-content {
     margin-left: 80px;
     padding: 20px;
-    width: 100%;
+    padding-left: 0;
+    width: calc(100% - 80px);
+    overflow-x: hidden;
+    box-sizing: border-box;
 }
 
-.admin-dashboard-icon {
-    padding: 20px;
-}
+@media (max-width: 568px) {
+    .admin-home-content {
+        padding-right: 10px;
+        padding-left: 0;
+        width: 100%;
+        margin-left: 50px;
+    }
 
-.admin-dashboard-icon:hover {
-    background-color: #202020;
+    .table-head {
+        font-size: 11px;
+    }
+
+    .table-button {
+        padding: 5px;
+        font-size: 10px;
+    }
+
+    .table-data {
+        font-size: 10px;
+        padding: 5px;
+    }
 }

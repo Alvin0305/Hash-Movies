@@ -67,7 +67,7 @@ const Actors = () => {
   return (
     <div className="admin-table-div">
       <h1 className="home-page-sub-heading">ACTORS</h1>
-      <table className="genre-table">
+      <table className="general-table">
         <thead>
           <tr className="table-row">
             <th className="table-head">#</th>

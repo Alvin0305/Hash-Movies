@@ -23,7 +23,7 @@ const LoginPage = () => {
         console.log("Login successful", responce.data.user);
         console.log("role: ", responce.data.user.role);
         if (responce.data.user.role === "admin") {
-          navigate("/admin/home");
+          navigate("/admin/home", { state: { user: responce.data.user } });
         } else {
           navigate("/home", { state: { user: responce.data.user } });
         }

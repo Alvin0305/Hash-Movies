@@ -1,58 +1,112 @@
 .loading-page {
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+.loading-page-wrapper {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
 }
 
 .loading-horizontal-div {
     display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    padding: 20px;
+}
+
+.loading-long-div, 
+.loading-longer-div, 
+.loading-sharper-div {
+    background-color: #242424;
+    border-radius: 10px;
+    width: 100%;
     margin: 20px;
+    box-sizing: border-box;
 }
 
 .loading-long-div {
-    background-color: #242424;
-    height: 50px;
-    width: 600px;
-    margin: 20px;
-    border-radius: 20px;
+    height: 45px;
+    max-width: 600px;
 }
 
 .loading-longer-div {
-    background-color: #242424;
     height: 50px;
-    width: 800px;
-    margin: 20px;
-    border-radius: 20px;
 }
 
 .loading-sharper-div {
-    background-color: #242424;
     height: 25px;
-    width: 800px;
-    margin: 20px;
-    border-radius: 20px;
+}
+
+.loading-small-div, 
+.loading-medium-div, 
+.loading-large-div {
+    background-color: #242424;
+    border-radius: 15px;
+    box-sizing: border-box;
+    flex-shrink: 0;
 }
 
 .loading-small-div {
-    background-color: #242424;
     height: 100px;
     width: 100px;
-    margin: 20px;
-    border-radius: 20px;
 }
 
 
 .loading-medium-div {
-    background-color: #242424;
-    height: 150px;
-    width: 150px;
-    margin: 20px;
-    border-radius: 20px;
+    height: 130px;
+    width: 130px;
 }
 
 .loading-large-div {
-    background-color: #242424;
-    height: 200px;
-    width: 200px;
-    margin: 20px;
-    border-radius: 20px;
+    height: 175px;
+    width: 175px;
+}
+
+@media (max-width: 568px) {
+
+    .loading-page {
+        padding: 10px;
+    }
+
+    .loading-page-wrapper {
+        gap: 10px;
+    }
+
+    .loading-horizontal-div {
+        gap: 10px;
+        padding: 0;
+    }
+
+    .loading-longer-div, 
+    .loading-long-div, 
+    .loading-sharper-div {
+        width: 100%;
+        margin: 0;
+        margin-top: 20px;
+    }
+
+    .loading-small-div {
+        width: 50px;
+        height: 50px;
+    }
+
+    .loading-medium-div {
+        width: 75px;
+        height: 75px;
+    }
+
+    .loading-large-div {
+        width: 100px;
+        height: 100px;
+    }
 }

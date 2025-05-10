@@ -46,7 +46,7 @@ const GenrePage = () => {
           onClick={navigateToHome}
           className="movie-page-sidebar-back-button"
         />
-        <h1>{genre.name}</h1>
+        <h1 className="genre-name">{genre.name}</h1>
         <img
           src={`/backend/${genre.image}`}
           alt="No internet"

@@ -1,0 +1,40 @@
+.scroll-pane {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+/*
+.scroll-pane::-webkit-scrollbar {
+    height: 8px; 
+}
+
+.scroll-pane::-webkit-scrollbar-track {
+    background: #1e1e1e;
+    border-radius: 4px;
+}
+
+.scroll-pane::-webkit-scrollbar-thumb {
+    background: #555; 
+    border-radius: 4px;
+}
+
+.scroll-pane::-webkit-scrollbar-thumb:hover {
+    background: #888; 
+}
+*/
+
+@media (max-width: 568px) {
+    .scroll-pane .movie-tile {
+        width: auto;
+        height: 180px;
+        flex-shrink: 0;
+    }
+
+    .scroll-pane .movie-tile-image {
+        width: 100%;
+        height: auto;
+    }
+}

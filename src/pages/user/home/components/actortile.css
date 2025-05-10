@@ -1,0 +1,32 @@
+.actor-tile {
+    height: 200px;
+    width: auto;
+    border-radius: 5px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.actor-tile-image {
+    height: 100%;
+    width: auto;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.actor-tile-text {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    box-sizing: border-box;
+    margin: 0;
+    background-color: #242424;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+@media (max-width: 568px) {
+    .actor-tile-text {
+        font-size: 12px;
+    }
+}

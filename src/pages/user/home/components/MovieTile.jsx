@@ -16,7 +16,7 @@ const MovieTile = ({ movie, user }) => {
         className="movie-tile-image"
         onClick={navigateToMovies}
       />
-      <h1 className="movie-tile-text">{movie.title}</h1>
+      <h2 className="movie-tile-text">{movie.title}</h2>
     </div>
   );
 };

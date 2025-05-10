@@ -1,6 +1,7 @@
 import React from "react";
 import "../utils/utils.css";
 import { useNavigate } from "react-router-dom";
+import "./actortile.css";
 
 const ActorTile = ({ actor, user }) => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const ActorTile = ({ actor, user }) => {
         className="actor-tile-image"
         onClick={navigateToActorPage}
       />
-      <h1 className="actor-tile-text">{actor.name}</h1>
+      <h3 className="actor-tile-text">{actor.name}</h3>
     </div>
   );
 };

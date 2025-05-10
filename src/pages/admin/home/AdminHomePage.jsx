@@ -6,6 +6,9 @@ import Platforms from "../platforms/Platforms";
 import "./home.css";
 import Actors from "../actors/Actors";
 import Dashboard from "../dashboard/Dashboard";
+import { useLocation } from "react-router-dom";
+import LoadingPage from "../../user/loading/LoadingPage";
+import ForbiddenPage from "../forbidden/ForbiddenPage";
 
 const AdminHomePage = () => {
   const userRef = useRef(null);
@@ -13,6 +16,9 @@ const AdminHomePage = () => {
   const genreRef = useRef(null);
   const platformRef = useRef(null);
   const actorRef = useRef(null);
+
+  const location = useLocation();
+  const { user } = location.state || {};
 
   const scrollToUsers = () => {
     userRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -29,6 +35,9 @@ const AdminHomePage = () => {
   const scrollToActors = () => {
     actorRef.current?.scrollIntoView({ behavior: "smooth" });
   };
+
+  if (!user) return <ForbiddenPage />;
+  if (user.role !== "admin") return <ForbiddenPage />;
 
   return (
     <div className="admin-home-page">

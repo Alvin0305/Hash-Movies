@@ -42,3 +42,23 @@
 .actor-page-language {
     margin: 0;
 }
+
+@media (max-width: 568px) {
+    .actor-page-wrapper {
+        flex-direction: column;
+        box-sizing: border-box;
+    }
+
+    .actor-page-left-div {
+        width: 100%;
+        box-sizing: border-box;
+        align-items: center;
+        border-right: none;
+        border-bottom: 1px solid gray;
+    }
+
+    .actor-page-details-div {
+        align-self: flex-start;
+        box-sizing: border-box;
+    }
+}

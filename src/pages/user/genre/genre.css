@@ -30,15 +30,23 @@
 @media (max-width: 568px) {
     .genre-page {
         flex-direction: column;
+        overflow-y: auto;
+        height: auto;
     }
 
     .genre-page-side-bar {
         width: 100%;
+        box-sizing: border-box;
         height: fit-content;
         align-items: center;
         border-right: none;
         border-bottom: 1px solid gray;
-        padding: 10px;
+        padding: 20px;
+    }
+
+    .genre-page-image {
+        width: 100%;
+        height: auto;
     }
 
     .genre-page-content::-webkit-scrollbar {
@@ -46,6 +54,23 @@
     }
 
     .genre-page-content {
-        padding: 10px;
+        width: 100%;
+        overflow-y: visible;
+        box-sizing: border-box;
+        padding: 20px;
+    }
+
+    .movie-page-sidebar-back-button {
+        margin: 0;
+    }
+
+    .genre-name {
+        font-size: 24px;
+        margin: 10px;
+    }
+
+    .genre-page-content h1 {
+        margin: 5px;
+        font-size: 20px;
     }
 }

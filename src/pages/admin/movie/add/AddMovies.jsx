@@ -442,7 +442,7 @@ const AddMovies = () => {
           </div>
         </form>
         <div className="add-movie-tables-div">
-          <table className="general-table">
+          <table className="general-table update-movie-table">
             <thead>
               <tr>
                 <th className="table-head">#</th>
@@ -478,7 +478,7 @@ const AddMovies = () => {
               })}
             </tbody>
           </table>
-          <table className="general-table update-actor-table">
+          <table className="general-table update-movie-table">
             <thead>
               <tr>
                 <th className="table-head">#</th>
