@@ -27,11 +27,7 @@ export const createMovie = (movieData) =>
     },
   });
 export const updateMovie = (id, movieData) =>
-  API.put(`/movies/${id}`, movieData, { // Added multipart/form-data for consistency if updates involve files
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
+  API.put(`/movies/${id}`, movieData);
 export const deleteMovie = (id) => API.delete(`/movies/${id}`);
 export const likeMovie = (id) => API.patch(`/movies/${id}/like`);
 export const unlikeMovie = (id) => API.patch(`/movies/${id}/unlike`);
@@ -45,11 +41,7 @@ export const createActor = (actorData) =>
     },
   });
 export const updateActor = (id, actorData) =>
-  API.put(`/actors/${id}`, actorData, { // Added multipart/form-data
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
+  API.put(`/actors/${id}`, actorData);
 export const deleteActor = (id) => API.delete(`/actors/${id}`);
 
 // --- Genres ---
@@ -61,11 +53,7 @@ export const createGenre = (genreData) =>
     },
   });
 export const updateGenre = (id, genreData) =>
-  API.put(`/genres/${id}`, genreData, { // Added multipart/form-data
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
+  API.put(`/genres/${id}`, genreData);
 export const deleteGenre = (id) => API.delete(`/genres/${id}`);
 
 // --- Platforms ---
@@ -77,11 +65,7 @@ export const createPlatform = (platformData) =>
     },
   });
 export const updatePlatform = (id, platformData) =>
-  API.put(`/platforms/${id}`, platformData, { // Added multipart/form-data
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
+  API.put(`/platforms/${id}`, platformData);
 export const deletePlatform = (id) => API.delete(`/platforms/${id}`);
 
 // --- Reviews ---
