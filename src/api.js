@@ -84,16 +84,16 @@ export const updateUser = (id, credentials) =>
 export const fetchAllUsers = () => API.get("/users");
 
 export const addToViewed = (userId, movieId) =>
-  API.put(`/users/viewed/add/${userId}`, { movieId }); // Sending movieId in body
+  API.put(`/users/viewed/add/${userId}`, movieId); // Sending movieId in body
 export const removeFromViewed = (userId, movieId) =>
-  API.put(`/users/viewed/remove/${userId}`, { movieId }); // Sending movieId in body
+  API.put(`/users/viewed/remove/${userId}`, movieId); // Sending movieId in body
 
 export const addToLiked = (userId, movieId) =>
-  API.put(`/users/liked/add/${userId}`, { movieId }); // Sending movieId in body
+  API.put(`/users/liked/add/${userId}`, movieId); // Sending movieId in body
 export const removeFromLiked = (userId, movieId) =>
-  API.put(`/users/liked/remove/${userId}`, { movieId }); // Sending movieId in body
+  API.put(`/users/liked/remove/${userId}`, movieId); // Sending movieId in body
 
 export const addToWatchList = (userId, movieId) =>
-  API.put(`/users/watchlist/add/${userId}`, { movieId }); // Sending movieId in body
+  API.put(`/users/watchlist/add/${userId}`, movieId); // Sending movieId in body
 export const removeFromWatchList = (userId, movieId) =>
-  API.put(`/users/watchlist/remove/${userId}`, { movieId }); // Sending movieId in body
+  API.put(`/users/watchlist/remove/${userId}`, movieId); // Sending movieId in body
