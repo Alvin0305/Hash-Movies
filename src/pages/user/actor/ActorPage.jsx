@@ -51,7 +51,7 @@ const ActorPage = () => {
       <div className="actor-page-wrapper">
         <div className="actor-page-left-div">
           <h1>{actor.name.toUpperCase()}</h1>
-          <img src={`/backend/${actor.image}`} alt="No internet" width={300} />
+          <img src={actor.image} alt="No internet" width={300} />
           <div className="actor-page-details-div">
             <h4 className="actor-page-sub-heading">DEBUT MOVIE</h4>
             <h2 className="actor-page-value">{debutMovie.title}</h2>

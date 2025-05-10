@@ -48,7 +48,7 @@ const GenrePage = () => {
         />
         <h1 className="genre-name">{genre.name}</h1>
         <img
-          src={`/backend/${genre.image}`}
+          src={genre.image}
           alt="No internet"
           className="genre-page-image"
         />

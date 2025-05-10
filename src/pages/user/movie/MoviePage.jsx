@@ -268,7 +268,7 @@ const MoviePage = () => {
         </button>
         <h1 className="movie-page-title">{movie.title}</h1>
         <img
-          src={`/backend/${movie.image}`}
+          src={movie.image}
           alt="No internet"
           className="movie-page-image"
         />

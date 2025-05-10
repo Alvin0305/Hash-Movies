@@ -11,7 +11,7 @@ const ActorTile = ({ actor, user }) => {
   return (
     <div className="actor-tile">
       <img
-        src={`/backend/${actor.image}`}
+        src={actor.image}
         alt="No internet"
         className="actor-tile-image"
         onClick={navigateToActorPage}

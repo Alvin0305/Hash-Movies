@@ -11,7 +11,7 @@ const GenreTile = ({ genre, user }) => {
   return (
     <div className="large-tile">
       <img
-        src={`/backend/${genre.image}`}
+        src={genre.image}
         alt="No internet"
         className="large-tile-image"
         onClick={navigateToGenrePage}
