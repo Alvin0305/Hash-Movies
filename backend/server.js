@@ -5,14 +5,16 @@ const mongoose = require("mongoose");
 const path = require("path");
 const routes = require("./routes");
 
-dotenv.config({ path: path.resolve(__dirname, '.env') });
+dotenv.config({ path: path.resolve(__dirname, ".env") });
 
 const app = express();
 
 // --- Database Connection ---
 const MONGODB_URI = process.env.MONGODB_URI;
 if (!MONGODB_URI) {
-  console.error("FATAL ERROR: MONGODB_URI is not defined in environment variables.");
+  console.error(
+    "FATAL ERROR: MONGODB_URI is not defined in environment variables."
+  );
   process.exit(1);
 }
 mongoose
@@ -23,11 +25,15 @@ mongoose
     process.exit(1);
   });
 
+console.log(
+  "SERVER STARTING - MONGODB_URI from process.env:",
+  process.env.MONGODB_URI
+);
 // --- CORS Configuration ---
 const allowedOrigins = [
-  'http://localhost:5173',
-  'http://localhost:3000',
-  'https://hash-movies.onrender.com'
+  "http://localhost:5173",
+  "http://localhost:3000",
+  "https://hash-movies.onrender.com",
 ];
 const corsOptions = {
   origin: function (origin, callback) {
@@ -62,7 +68,10 @@ app.get("*", (req, res) => {
   const indexPath = path.join(frontendBuildPath, "index.html");
   res.sendFile(indexPath, (err) => {
     if (err) {
-      console.error(`Error sending SPA fallback index.html for path ${req.path}:`, err);
+      console.error(
+        `Error sending SPA fallback index.html for path ${req.path}:`,
+        err
+      );
       res.status(500).send("Internal server error serving the application.");
     }
   });
