@@ -6,6 +6,7 @@ import Genre from "../user/components/Genre";
 import * as api from "../../../api";
 import { useLocation } from "react-router-dom";
 import Selector from "./Selector";
+import languages from "../../../context/languages";
 
 const SearchPage = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -16,10 +17,12 @@ const SearchPage = () => {
 
   const [allGenres, setAllGenres] = useState([]);
   const [allPlatforms, setAllPlatforms] = useState([]);
+  const allLanguages = languages;
   const [filter, setFilter] = useState({});
 
   const [selectedGenres, setSelectedGenres] = useState({});
   const [selectedPlatforms, setSelectedPlatforms] = useState({});
+  const [selectedLanguage, setSelectedLanguage] = useState("");
   const [trending, setTrending] = useState(false);
   const [featured, setFeatured] = useState(false);
   const [matchType, setMatchType] = useState("and");
@@ -34,6 +37,8 @@ const SearchPage = () => {
 
     console.log(selectedGenres);
     console.log(selectedPlatforms);
+    setSelectedGenres(selectedGenres);
+    setSelectedPlatforms(selectedPlatforms);
   };
 
   useEffect(() => {
@@ -69,6 +74,9 @@ const SearchPage = () => {
       try {
         const filter = {};
         filter.matchType = matchType;
+        if (selectedLanguage !== "") {
+          filter.language = selectedLanguage;
+        }
         if (searchValue.length !== 0) {
           filter.title = searchValue;
         }
@@ -87,6 +95,7 @@ const SearchPage = () => {
         if (featured) {
           filter.isFeatured = true;
         }
+
         console.log(genreIds);
         console.log(platformIds);
         console.log(filter);
@@ -126,10 +135,12 @@ const SearchPage = () => {
     selectedPlatforms,
     searchValue,
     matchType,
+    selectedLanguage,
   ]);
 
   const [showGenres, setShowGenres] = useState(false);
   const [showPlatforms, setShowPlatforms] = useState(false);
+  const [showLanguage, setShowLanguage] = useState(false);
   const [showSelectors, setShowSelectors] = useState(false);
 
   return (
@@ -198,6 +209,31 @@ const SearchPage = () => {
                     genre={platform.name}
                     onAdd={() => toggleOnPlatformSelector(platform._id)}
                     selected={selectedPlatforms[platform._id]}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+          <div>
+            <div className="search-page-genre-head-div">
+              <h1 className="search-page-heading">LANGUAGE</h1>
+              <FaAngleDown
+                onClick={() => setShowLanguage(!showLanguage)}
+                className="search-show-selector"
+              />
+            </div>
+            {showLanguage && (
+              <div className="search-page-selectors">
+                {allLanguages.map((language, index) => (
+                  <Genre
+                    key={index}
+                    genre={language}
+                    onAdd={() =>
+                      setSelectedLanguage(
+                        language === selectedLanguage ? "" : language
+                      )
+                    }
+                    selected={selectedLanguage === language}
                   />
                 ))}
               </div>
