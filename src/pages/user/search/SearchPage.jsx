@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import FlowPane from "../home/utils/FlowPane";
 import "./search.css";
-import { FaSearch } from "react-icons/fa";
+import { FaAngleDown, FaArrowDown, FaSearch, FaSortDown } from "react-icons/fa";
 import Genre from "../user/components/Genre";
 import * as api from "../../../api";
 import { useLocation } from "react-router-dom";
@@ -128,6 +128,10 @@ const SearchPage = () => {
     matchType,
   ]);
 
+  const [showGenres, setShowGenres] = useState(false);
+  const [showPlatforms, setShowPlatforms] = useState(false);
+  const [showSelectors, setShowSelectors] = useState(false);
+
   return (
     <div className="search-page">
       <form className="search-page-form">
@@ -159,44 +163,68 @@ const SearchPage = () => {
           </select>
         </div>
         <div className="search-page-contents">
-          <h1 className="search-page-heading">GENRES</h1>
-          <div className="search-page-selectors">
-            {allGenres.map((genre, index) => (
-              <Genre
-                key={index}
-                genre={genre.name}
-                onAdd={() => toggleOnGenreSelector(genre._id)}
-                selected={selectedGenres[genre._id]}
-              />
-            ))}
+          <div className="search-page-genre-head-div">
+            <h1 className="search-page-heading">GENRES</h1>
+            <FaAngleDown
+              onClick={() => setShowGenres(!showGenres)}
+              className="search-show-selector"
+            />
           </div>
-          <div>
-            <h1 className="search-page-heading">PLATFORMS</h1>
+          {showGenres && (
             <div className="search-page-selectors">
-              {allPlatforms.map((platform, index) => (
+              {allGenres.map((genre, index) => (
                 <Genre
                   key={index}
-                  genre={platform.name}
-                  onAdd={() => toggleOnPlatformSelector(platform._id)}
-                  selected={selectedPlatforms[platform._id]}
+                  genre={genre.name}
+                  onAdd={() => toggleOnGenreSelector(genre._id)}
+                  selected={selectedGenres[genre._id]}
                 />
               ))}
             </div>
-          </div>
+          )}
           <div>
-            <h1 className="search-page-heading">FILTERS</h1>
-            <div className="search-page-selectors">
-              <Selector
-                value="Trending"
-                onAdd={() => setTrending(!trending)}
-                selected={trending}
-              />
-              <Selector
-                value="Featured"
-                onAdd={() => setFeatured(!featured)}
-                selected={featured}
+            <div className="search-page-genre-head-div">
+              <h1 className="search-page-heading">PLATFORMS</h1>
+              <FaAngleDown
+                onClick={() => setShowPlatforms(!showPlatforms)}
+                className="search-show-selector"
               />
             </div>
+            {showPlatforms && (
+              <div className="search-page-selectors">
+                {allPlatforms.map((platform, index) => (
+                  <Genre
+                    key={index}
+                    genre={platform.name}
+                    onAdd={() => toggleOnPlatformSelector(platform._id)}
+                    selected={selectedPlatforms[platform._id]}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+          <div>
+            <div className="search-page-genre-head-div">
+              <h1 className="search-page-heading">FILTERS</h1>
+              <FaAngleDown
+                onClick={() => setShowSelectors(!showSelectors)}
+                className="search-show-selector"
+              />
+            </div>
+            {showSelectors && (
+              <div className="search-page-selectors">
+                <Selector
+                  value="Trending"
+                  onAdd={() => setTrending(!trending)}
+                  selected={trending}
+                />
+                <Selector
+                  value="Featured"
+                  onAdd={() => setFeatured(!featured)}
+                  selected={featured}
+                />
+              </div>
+            )}
           </div>
           <div className="search-page-movies">
             <FlowPane movies={movies} user={user} />

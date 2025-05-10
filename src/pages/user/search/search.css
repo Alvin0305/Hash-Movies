@@ -68,6 +68,15 @@
     margin-top: 20px;
 }
 
+.search-page-genre-head-div {
+    display: flex;
+    align-items: center;
+}
+
+.search-show-selector {
+    margin-left: 10px;
+}
+
 @media (max-width: 568px) {
     .search-bar-wrapper {
         flex-direction: column;
