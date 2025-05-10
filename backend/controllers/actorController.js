@@ -1,5 +1,6 @@
 const Actor = require("../models/Actor");
 const Movie = require("../models/Movie");
+const cloudinary = require("../config/cloudinaryConfig");
 
 exports.createActor = async (req, res) => {
   try {
@@ -20,12 +21,12 @@ exports.createActor = async (req, res) => {
           "base64"
         )}`,
         {
-          folder: "hashmovies/actors", 
+          folder: "hashmovies/actors",
           resource_type: "image",
         }
       );
       actorData.image = result.secure_url;
-      actorData.cloudinaryPublicId = result.public_id; 
+      actorData.cloudinaryPublicId = result.public_id;
     } else {
       actorData.image =
         "https://res.cloudinary.com/duki8udfb/image/upload/vXXXXXX/hashmovies/defaults/default-actor.jpg"; // Replace with your actual default URL

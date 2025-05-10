@@ -1,5 +1,6 @@
 const Genre = require("../models/Genre");
 const Movie = require("../models/Movie");
+const cloudinary = require("../config/cloudinaryConfig");
 
 exports.createGenre = async (req, res) => {
   try {
