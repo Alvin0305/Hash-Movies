@@ -83,7 +83,7 @@ const HomePage = () => {
         className="home-search-button"
         onClick={() => navigate("/home/search", { state: { user: user } })}
       >
-        <FaSearch size={40} color="white" />
+        <FaSearch size={40} color="white" className="home-search-icon"/>
       </button>
       <div className="home-page-contents">
         <div ref={trendingRef}>

@@ -59,6 +59,12 @@
 
 @media (max-width: 568px) {
 
+
+    .home-search-icon {
+        height: 20px;
+        width: 20px;
+    }
+    
     .home-search-button {
         size: 10px;
         width: 10px;
