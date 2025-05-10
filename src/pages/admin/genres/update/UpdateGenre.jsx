@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 const UpdateGenre = () => {
   const location = useLocation();
-  const { genre } = location.state || {};
+  const { genre, user } = location.state || {};
 
   const [formData, setFormData] = useState({
     name: genre.name || "",
@@ -19,7 +19,6 @@ const UpdateGenre = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,7 +35,7 @@ const UpdateGenre = () => {
     try {
       const response = await api.updateGenre(genre._id, genreData);
       console.log("response:", response.data);
-      navigate("/admin/home");
+      navigate("/admin/home", { state: { user: user } });
     } catch (error) {
       console.error("Error updating genre:", error);
       if (error.response) {
@@ -145,7 +144,11 @@ const UpdateGenre = () => {
       <div className="update-genre-page-wrapper-div">
         <form action="" className="add-genre-page-wrapper">
           <div className="add-genre-image-div">
-            <img src={`/backend/${formData.image}`} alt="No internet" width={300} />
+            <img
+              src={`/backend/${formData.image}`}
+              alt="No internet"
+              width={300}
+            />
           </div>
           <div className="add-genre-content-div">
             <div className="add-genres-buttons">
@@ -153,7 +156,7 @@ const UpdateGenre = () => {
                 className="add-genre-button add-genre-cancel-button"
                 onClick={(e) => {
                   e.preventDefault();
-                  navigate("/admin/home");
+                  navigate("/admin/home", { state: { user: user } });
                 }}
               >
                 CANCEL

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import * as api from "../../../api";
 import { useNavigate } from "react-router-dom";
 
-const Platforms = () => {
+const Platforms = ({ user }) => {
   const [platforms, setPlatforms] = useState([]);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
 
@@ -103,7 +103,7 @@ const Platforms = () => {
                   className="table-button table-update-button"
                   onClick={() =>
                     navigate("/admin/platform/update", {
-                      state: { platform: platform },
+                      state: { platform: platform, user: user },
                     })
                   }
                 >
@@ -126,7 +126,7 @@ const Platforms = () => {
         className="admin-add-button"
         onClick={(e) => {
           e.preventDefault();
-          navigate("/admin/platform/add");
+          navigate("/admin/platform/add", { state: { user: user } });
         }}
       >
         +

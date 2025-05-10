@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as api from "../../../../api";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import languages from "../../../../context/languages";
 import Genre from "../../../user/user/components/Genre";
 
@@ -12,6 +12,9 @@ const AddActor = () => {
     languages: [],
     mostFamousMovies: [],
   });
+
+  const location = useLocation();
+  const { user } = location.state || {};
 
   const [file, setFile] = useState(null);
   const navigate = useNavigate();
@@ -64,7 +67,7 @@ const AddActor = () => {
     try {
       const response = await api.createActor(data);
       console.log("response:", response.data);
-      navigate("/admin/home");
+      navigate("/admin/home", { state: { user: user } });
     } catch (error) {
       console.error("Error creating actor:", error);
       if (error.response) {
@@ -149,7 +152,7 @@ const AddActor = () => {
               className="add-genre-button add-genre-cancel-button"
               onClick={(e) => {
                 e.preventDefault();
-                navigate("/admin/home");
+                navigate("/admin/home", { state: { user: user } });
               }}
             >
               CANCEL

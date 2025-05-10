@@ -7,7 +7,7 @@ import "./update.css";
 
 const UpdateActor = () => {
   const location = useLocation();
-  const { actor } = location.state || {};
+  const { actor, user } = location.state || {};
   const [formData, setFormData] = useState({
     name: actor.name || "",
     debutMovie: actor.debutMovie || null,
@@ -116,7 +116,7 @@ const UpdateActor = () => {
     try {
       const response = await api.updateActor(actor._id, data);
       console.log("response:", response.data);
-      navigate("/admin/home");
+      navigate("/admin/home", { state: { user: user } });
     } catch (error) {
       console.error("Error creating actor:", error);
       if (error.response) {
@@ -210,7 +210,11 @@ const UpdateActor = () => {
       <div className="add-actor-page-wrapper">
         <form action="" className="add-genre-page-wrapper">
           <div className="add-genre-image-div">
-            <img src={`/backend/${actor.image}`} alt="No internet" width={200} />
+            <img
+              src={`/backend/${actor.image}`}
+              alt="No internet"
+              width={200}
+            />
           </div>
           <div className="add-genre-content-div">
             <div className="add-genre-label-div">
@@ -263,7 +267,7 @@ const UpdateActor = () => {
                 className="add-genre-button add-genre-cancel-button"
                 onClick={(e) => {
                   e.preventDefault();
-                  navigate("/admin/home");
+                  navigate("/admin/home", { state: { user: user } });
                 }}
               >
                 CANCEL

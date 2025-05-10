@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import * as api from "../../../../api";
 import "./add.css";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const AddGenre = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +11,8 @@ const AddGenre = () => {
     movies: [],
   });
 
+  const location = useLocation();
+  const { user } = location.state || {};
   const [file, setFile] = useState(null);
   const navigate = useNavigate();
 
@@ -35,7 +37,7 @@ const AddGenre = () => {
     try {
       const response = await api.createGenre(data);
       console.log("response:", response.data);
-      navigate("/admin/home");
+      navigate("/admin/home", { state: { user: user } });
     } catch (error) {
       console.error("Error creating genre:", error);
       if (error.response) {
@@ -92,7 +94,7 @@ const AddGenre = () => {
               className="add-genre-button add-genre-cancel-button"
               onClick={(e) => {
                 e.preventDefault();
-                navigate("/admin/home");
+                navigate("/admin/home", { state: { user: user } });
               }}
             >
               CANCEL

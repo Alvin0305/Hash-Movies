@@ -50,19 +50,19 @@ const AdminHomePage = () => {
       />
       <div className="admin-home-content">
         <div ref={userRef}>
-          <Users />
+          <Users user={user}/>
         </div>
         <div ref={movieRef}>
-          <Movies />
+          <Movies user={user}/>
         </div>
         <div ref={genreRef}>
-          <Genres />
+          <Genres user={user}/>
         </div>
         <div ref={platformRef}>
-          <Platforms />
+          <Platforms user={user}/>
         </div>
         <div ref={actorRef}>
-          <Actors />
+          <Actors user={user}/>
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import * as api from "../../../api";
 import { useNavigate } from "react-router-dom";
 
-const Actors = () => {
+const Actors = ({ user }) => {
   const [actors, setActors] = useState([]);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
 
@@ -107,7 +107,9 @@ const Actors = () => {
                 <button
                   className="table-button table-update-button"
                   onClick={() =>
-                    navigate("/admin/actor/update", { state: { actor: actor } })
+                    navigate("/admin/actor/update", {
+                      state: { actor: actor, user: user },
+                    })
                   }
                 >
                   Update
@@ -116,7 +118,7 @@ const Actors = () => {
               <td className="table-data">
                 <button
                   className="table-button table-delete-button"
-                    onClick={() => deleteActor(actor._id)}
+                  onClick={() => deleteActor(actor._id)}
                 >
                   Delete
                 </button>
@@ -129,7 +131,7 @@ const Actors = () => {
         className="admin-add-button"
         onClick={(e) => {
           e.preventDefault();
-          navigate("/admin/actor/add");
+          navigate("/admin/actor/add", { state: { user: user } });
         }}
       >
         +

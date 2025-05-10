@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import * as api from "../../../../api";
 import "./add.css";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const AddPlatform = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +13,9 @@ const AddPlatform = () => {
 
   const [file, setFile] = useState(null);
   const navigate = useNavigate();
+
+  const location = useLocation();
+  const user = location.state || {};
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -37,7 +40,7 @@ const AddPlatform = () => {
     try {
       const response = await api.createPlatform(data);
       console.log("response:", response.data);
-        navigate("/admin/home");
+      navigate("/admin/home", { state: { user: user } });
     } catch (error) {
       console.error("Error creating platform:", error);
       if (error.response) {
@@ -94,7 +97,7 @@ const AddPlatform = () => {
               className="add-genre-button add-genre-cancel-button"
               onClick={(e) => {
                 e.preventDefault();
-                navigate("/admin/home");
+                navigate("/admin/home", { state: { user: user } });
               }}
             >
               CANCEL

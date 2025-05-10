@@ -3,7 +3,7 @@ import * as api from "../../../../api";
 import LoadingPage from "../../../user/loading/LoadingPage";
 import Genre from "../../../user/user/components/Genre";
 import "./add.css";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const AddMovies = () => {
   const [formData, setFormData] = useState({
@@ -21,6 +21,10 @@ const AddMovies = () => {
     trailer: "",
     storyline: "",
   });
+
+  const location = useLocation();
+  const { user } = location.state || {};
+
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [allGenres, setAllGenres] = useState([]);
@@ -219,7 +223,7 @@ const AddMovies = () => {
     try {
       const response = await api.createMovie(data);
       console.log("Movie created:", response.data);
-      navigate("/admin/home");
+      navigate("/admin/home", { state: { user: user } });
     } catch (error) {
       console.error("Error creating movie:", error);
       if (error.response) {
@@ -259,7 +263,7 @@ const AddMovies = () => {
                 className="add-movie-cancel-button"
                 onClick={(e) => {
                   e.preventDefault();
-                  navigate("/admin/home");
+                  navigate("/admin/home", { state: { user: user } });
                 }}
                 disabled={submitting}
               >
