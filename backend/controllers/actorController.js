@@ -15,9 +15,20 @@ exports.createActor = async (req, res) => {
       mostFamousMovies: req.body.mostFamousMovies,
     };
     if (req.file) {
-      actorData.image = `/uploads/${req.file.filename}`;
+      const result = await cloudinary.uploader.upload(
+        `data:${req.file.mimetype};base64,${req.file.buffer.toString(
+          "base64"
+        )}`,
+        {
+          folder: "hashmovies/actors", 
+          resource_type: "image",
+        }
+      );
+      actorData.image = result.secure_url;
+      actorData.cloudinaryPublicId = result.public_id; 
     } else {
-      actorData.image = `/uploads/default-actor.jpg`;
+      actorData.image =
+        "https://res.cloudinary.com/duki8udfb/image/upload/vXXXXXX/hashmovies/defaults/default-actor.jpg"; // Replace with your actual default URL
     }
     const actor = new Actor(actorData);
     await actor.save();

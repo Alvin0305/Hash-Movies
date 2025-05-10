@@ -14,9 +14,20 @@ exports.createGenre = async (req, res) => {
     };
 
     if (req.file) {
-      genreData.image = `/uploads/${req.file.filename}`;
+      const result = await cloudinary.uploader.upload(
+        `data:${req.file.mimetype};base64,${req.file.buffer.toString(
+          "base64"
+        )}`,
+        {
+          folder: "hashmovies/genres",
+          resource_type: "image",
+        }
+      );
+      genreData.image = result.secure_url;
+      genreData.cloudinaryPublicId = result.public_id;
     } else {
-      genreData.image = `/uploads/default-genre.jpeg`;
+      genreData.image =
+        "https://res.cloudinary.com/duki8udfb/image/upload/vXXXXXX/hashmovies/defaults/default-genre.jpg"; // Replace with your actual default URL
     }
 
     const genre = new Genre(genreData);

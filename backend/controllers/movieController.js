@@ -103,8 +103,6 @@ exports.createMovie = async (req, res) => {
     };
 
     if (req.file) {
-      // Upload image to Cloudinary
-      // We need to upload the buffer from req.file.buffer
       const result = await cloudinary.uploader.upload(
         `data:${req.file.mimetype};base64,${req.file.buffer.toString(
           "base64"
@@ -120,7 +118,7 @@ exports.createMovie = async (req, res) => {
     } else {
       // Provide a default image URL (perhaps one you upload to Cloudinary manually)
       movieData.image =
-        "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/vXXXXXX/hashmovies/defaults/default-movie.jpg"; // Replace with your actual default URL
+        "https://res.cloudinary.com/duki8udfb/image/upload/vXXXXXX/hashmovies/defaults/default-movie.jpg"; // Replace with your actual default URL
     }
 
     const movie = new Movie(movieData);

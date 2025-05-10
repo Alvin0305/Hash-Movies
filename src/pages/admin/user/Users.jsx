@@ -48,7 +48,7 @@ const Users = () => {
   return (
     <div className="admin-home-users-page">
       <h1 className="home-page-sub-heading">USERS</h1>
-      <table className="general-table">
+      <table className="general-table" id="tableid">
         <thead>
           <tr className="table-row">
             <th className="table-head">#</th>
