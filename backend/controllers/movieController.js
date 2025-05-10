@@ -2,6 +2,7 @@ const Movie = require("../models/Movie");
 const Genre = require("../models/Genre");
 const Platform = require("../models/Platform");
 const Actor = require("../models/Actor");
+const cloudinary = require("../config/cloudinaryConfig");
 
 exports.getAllMovies = async (req, res) => {
   try {
@@ -102,9 +103,24 @@ exports.createMovie = async (req, res) => {
     };
 
     if (req.file) {
-      movieData.image = `/uploads/${req.file.filename}`;
+      // Upload image to Cloudinary
+      // We need to upload the buffer from req.file.buffer
+      const result = await cloudinary.uploader.upload(
+        `data:${req.file.mimetype};base64,${req.file.buffer.toString(
+          "base64"
+        )}`,
+        {
+          folder: "hashmovies/movies", // Optional: organize in Cloudinary folders
+          // public_id: `movie_${Date.now()}`, // Optional: custom public_id
+          resource_type: "image",
+        }
+      );
+      movieData.image = result.secure_url; // Store the Cloudinary URL
+      movieData.cloudinaryPublicId = result.public_id; // Optional: store public_id for deletion/updates
     } else {
-      movieData.image = `/uploads/default-movie.jpg`;
+      // Provide a default image URL (perhaps one you upload to Cloudinary manually)
+      movieData.image =
+        "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/vXXXXXX/hashmovies/defaults/default-movie.jpg"; // Replace with your actual default URL
     }
 
     const movie = new Movie(movieData);

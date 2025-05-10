@@ -7,6 +7,7 @@ const movieSchema = new mongoose.Schema(
     releaseDate: Date,
     genres: [{ type: mongoose.Schema.Types.ObjectId, ref: "Genre" }],
     image: String,
+    cloudinaryPublicId: String,
     actors: [{ type: mongoose.Schema.Types.ObjectId, ref: "Actor" }],
     duration: Number,
     storyline: String,
