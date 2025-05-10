@@ -11,8 +11,8 @@ const MovieTile = ({ movie, user }) => {
   return (
     <div className="movie-tile">
       <img
-        src={`/backend/${movie.image}`}
-        alt="No internet"
+        src={movie.image}
+        alt={movie.title || "Movie poster"}
         className="movie-tile-image"
         onClick={navigateToMovies}
       />
