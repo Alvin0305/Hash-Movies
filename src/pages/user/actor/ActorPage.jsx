@@ -6,7 +6,7 @@ import "./actor.css";
 
 const ActorPage = () => {
   const location = useLocation();
-  const { actor, user } = location.state || {};
+  const { actor } = location.state || {};
 
   const [mostFamousMovies, setMostFamousMovies] = useState([]);
   const [movies, setMovies] = useState([]);
@@ -59,8 +59,7 @@ const ActorPage = () => {
             <div className="actor-page-languages">
               {actor.languages.map((language, index) => (
                 <h4 key={index} className="actor-page-language">
-                    {language}
-                  
+                  {language}
                 </h4>
               ))}
             </div>
@@ -68,11 +67,11 @@ const ActorPage = () => {
         </div>
         <div className="actor-page-content-div">
           <h1 className="home-page-sub-heading">MOST FAMOUS MOVIES</h1>
-          <ScrollPane movies={mostFamousMovies} user={user} />
+          <ScrollPane movies={mostFamousMovies} />
           <h1 className="home-page-sub-heading">
             MOVIES OF {actor.name.toUpperCase()}
           </h1>
-          <ScrollPane movies={movies} user={user} />
+          <ScrollPane movies={movies} />
         </div>
       </div>
     </div>

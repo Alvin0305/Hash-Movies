@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ScrollPane from "../../utils/ScrollPane";
 import * as api from "../../../../../api";
 
-const UserGenre = ({ genre, user }) => {
+const UserGenre = ({ genre }) => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const UserGenre = ({ genre, user }) => {
   return (
     <div>
       <h1 className="home-page-sub-heading">{genre.name} Movies</h1>
-      <ScrollPane movies={movies} user={user}/>
+      <ScrollPane movies={movies} />
     </div>
   );
 };

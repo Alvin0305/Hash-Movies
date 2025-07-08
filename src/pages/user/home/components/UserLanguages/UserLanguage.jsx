@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as api from "../../../../../api";
 import ScrollPane from "../../utils/ScrollPane";
 
-const UserLanguage = ({ language, user }) => {
+const UserLanguage = ({ language }) => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const UserLanguage = ({ language, user }) => {
       {movies.length === 0 ? (
         <p className="home-page-text">No movies in this language</p>
       ) : (
-        <ScrollPane movies={movies} user={user} />
+        <ScrollPane movies={movies} />
       )}
     </div>
   );

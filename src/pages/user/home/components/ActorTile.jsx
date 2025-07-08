@@ -3,10 +3,10 @@ import "../utils/utils.css";
 import { useNavigate } from "react-router-dom";
 import "./actortile.css";
 
-const ActorTile = ({ actor, user }) => {
+const ActorTile = ({ actor }) => {
   const navigate = useNavigate();
   const navigateToActorPage = () => {
-    navigate("/home/actor", { state: { actor: actor, user: user } });
+    navigate("/home/actor", { state: { actor } });
   };
   return (
     <div className="actor-tile">

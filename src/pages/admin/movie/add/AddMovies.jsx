@@ -23,7 +23,6 @@ const AddMovies = () => {
   });
 
   const location = useLocation();
-  const { user } = location.state || {};
 
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -223,7 +222,7 @@ const AddMovies = () => {
     try {
       const response = await api.createMovie(data);
       console.log("Movie created:", response.data);
-      navigate("/admin/home", { state: { user: user } });
+      navigate("/admin/home");
     } catch (error) {
       console.error("Error creating movie:", error);
       if (error.response) {
@@ -263,7 +262,7 @@ const AddMovies = () => {
                 className="add-movie-cancel-button"
                 onClick={(e) => {
                   e.preventDefault();
-                  navigate("/admin/home", { state: { user: user } });
+                  navigate("/admin/home");
                 }}
                 disabled={submitting}
               >

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import * as api from "../../../api";
 import { useNavigate } from "react-router-dom";
 
-const Genres = ({ user }) => {
+const Genres = () => {
   const [genres, setGenres] = useState([]);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
 
@@ -91,7 +91,7 @@ const Genres = ({ user }) => {
                   className="table-button table-update-button"
                   onClick={() =>
                     navigate("/admin/genre/update", {
-                      state: { genre: genre, user: user },
+                      state: { genre },
                     })
                   }
                 >
@@ -114,7 +114,7 @@ const Genres = ({ user }) => {
         className="admin-add-button"
         onClick={(e) => {
           e.preventDefault();
-          navigate("/admin/genre/add", { state: { user: user } });
+          navigate("/admin/genre/add");
         }}
       >
         +

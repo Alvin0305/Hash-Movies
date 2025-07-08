@@ -8,7 +8,6 @@ import "./language.css";
 const LanguagePage = () => {
   const location = useLocation();
   const { language } = location.state || {};
-  const { user } = location.state || {};
 
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
@@ -37,7 +36,7 @@ const LanguagePage = () => {
           {movies.length === 0 ? (
             <p>No Films in this Language</p>
           ) : (
-            <FlowPane movies={movies} user={user}/>
+            <FlowPane movies={movies} />
           )}
         </div>
       )}

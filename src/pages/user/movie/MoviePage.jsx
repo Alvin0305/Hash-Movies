@@ -19,17 +19,19 @@ import FlowPane from "../home/utils/FlowPane";
 import ScrollPane from "../home/utils/ScrollPane";
 import Review from "./components/Review";
 import ActorsScrollPane from "../home/utils/ActorsScrollPane";
+import { useUser } from "../../../context/UserContext";
 
 const MoviePage = () => {
   const location = useLocation();
   const movie = location.state.movie || {};
-  const user = location.state.user || {};
   const navigate = useNavigate();
   const actors = movie.actors || [];
 
   const [relatedMovies, setRelatedMovies] = useState([]);
   const [rated, setRated] = useState(0);
   const [reviews, setReviews] = useState([]);
+
+  const { user } = useUser();
 
   const [userReview, setUserReview] = useState("");
 
@@ -65,7 +67,7 @@ const MoviePage = () => {
 
     getMovies();
     getReviews();
-  }, []);
+  }, [movie]);
 
   const checkViewed = () => {
     return Array.isArray(user?.viewed) && user.viewed.includes(movie._id);
@@ -265,6 +267,11 @@ const MoviePage = () => {
   return (
     <div className="movie-page">
       <div className="movie-page-side-bar">
+        <FaArrowLeft
+          size={30}
+          onClick={() => navigate("/home")}
+          className="movie-page-sidebar-back-button"
+        />
         <h1 className="movie-page-title">{movie.title}</h1>
         <img src={movie.image} alt="No internet" className="movie-page-image" />
         <p className="movie-page-storyline">{movie.storyline}</p>
@@ -344,9 +351,9 @@ const MoviePage = () => {
         )}
 
         <h1>MORE LIKE THIS</h1>
-        <ScrollPane movies={relatedMovies} user={user} />
+        <ScrollPane movies={relatedMovies} />
         <h1>ACTORS</h1>
-        <ActorsScrollPane actors={actors} user={user} />
+        <ActorsScrollPane actors={actors} />
         <div className="movie-page-review-session">
           <h2>REVIEW SESSION</h2>
           <form action="" className="movie-review-form">

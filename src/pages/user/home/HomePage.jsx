@@ -12,6 +12,7 @@ import UserLanguages from "./components/UserLanguages/UserLanguages";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import "./home.css";
+import { useUser } from "../../../context/UserContext";
 
 const HomePage = () => {
   const genresRef = useRef(null);
@@ -20,7 +21,8 @@ const HomePage = () => {
   const languagesRef = useRef(null);
 
   const location = useLocation();
-  const { user } = location.state || {};
+
+  const { user } = useUser();
 
   const navigate = useNavigate();
 
@@ -83,7 +85,7 @@ const HomePage = () => {
         className="home-search-button"
         onClick={() => navigate("/home/search", { state: { user: user } })}
       >
-        <FaSearch size={40} color="white" className="home-search-icon"/>
+        <FaSearch size={40} color="white" className="home-search-icon" />
       </button>
       <div className="home-page-contents">
         <div ref={trendingRef}>

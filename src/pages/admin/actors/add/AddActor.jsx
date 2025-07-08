@@ -13,9 +13,6 @@ const AddActor = () => {
     mostFamousMovies: [],
   });
 
-  const location = useLocation();
-  const { user } = location.state || {};
-
   const [file, setFile] = useState(null);
   const navigate = useNavigate();
   const allLanguages = languages;
@@ -67,7 +64,7 @@ const AddActor = () => {
     try {
       const response = await api.createActor(data);
       console.log("response:", response.data);
-      navigate("/admin/home", { state: { user: user } });
+      navigate("/admin/home");
     } catch (error) {
       console.error("Error creating actor:", error);
       if (error.response) {
@@ -152,7 +149,7 @@ const AddActor = () => {
               className="add-genre-button add-genre-cancel-button"
               onClick={(e) => {
                 e.preventDefault();
-                navigate("/admin/home", { state: { user: user } });
+                navigate("/admin/home");
               }}
             >
               CANCEL

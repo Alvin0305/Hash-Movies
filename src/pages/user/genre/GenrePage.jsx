@@ -4,11 +4,13 @@ import * as api from "../../../api";
 import ScrollPane from "../home/utils/ScrollPane";
 import "./genre.css";
 import { FaBackward } from "react-icons/fa";
+import { useUser } from "../../../context/UserContext";
 
 const GenrePage = () => {
   const location = useLocation();
   const genre = location.state.genre || {};
-  const user = location.state.user || {};
+
+  const { user } = useUser();
 
   const navigate = useNavigate();
 
@@ -47,11 +49,7 @@ const GenrePage = () => {
           className="movie-page-sidebar-back-button"
         />
         <h1 className="genre-name">{genre.name}</h1>
-        <img
-          src={genre.image}
-          alt="No internet"
-          className="genre-page-image"
-        />
+        <img src={genre.image} alt="No internet" className="genre-page-image" />
         <p>{genre.description}</p>
       </div>
       <div className="genre-page-content">

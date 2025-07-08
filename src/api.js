@@ -1,12 +1,7 @@
 import axios from "axios";
 
-// Determine the baseURL based on the environment
-// import.meta.env.PROD is true when running 'vite build' (production)
-// import.meta.env.DEV is true when running 'vite' (development server)
-// VITE_API_BASE_URL should be defined in your .env.development (or .env.local) for local dev
-const baseURL = import.meta.env.PROD
-  ? "/api" // For production builds, requests are relative to the domain serving the app
-  : import.meta.env.VITE_API_BASE_URL; // For local development, use the full URL
+console.log("api url is: " + import.meta.env.VITE_API_BASE_URL);
+const baseURL = import.meta.env.VITE_API_BASE_URL;
 
 const API = axios.create({
   baseURL: baseURL,

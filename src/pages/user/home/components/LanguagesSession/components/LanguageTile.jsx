@@ -1,11 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const LanguageTile = ({ language, user }) => {
+const LanguageTile = ({ language }) => {
   const navigate = useNavigate();
 
   const gotoLanguage = () => {
-    navigate("/home/language", { state: { language: language, user: user } });
+    navigate("/home/language", { state: { language } });
   };
   return (
     <div className="language-tile" onClick={gotoLanguage}>

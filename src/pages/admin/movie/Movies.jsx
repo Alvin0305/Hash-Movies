@@ -14,7 +14,7 @@ import {
   YAxis,
 } from "recharts";
 
-const Movies = ({ user }) => {
+const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
   const navigate = useNavigate();

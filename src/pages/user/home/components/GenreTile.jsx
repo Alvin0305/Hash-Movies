@@ -2,10 +2,10 @@ import React from "react";
 import "../utils/utils.css";
 import { useNavigate } from "react-router-dom";
 
-const GenreTile = ({ genre, user }) => {
+const GenreTile = ({ genre }) => {
   const navigate = useNavigate();
   const navigateToGenrePage = () => {
-    navigate("/home/genre", { state: { genre: genre, user: user } });
+    navigate("/home/genre", { state: { genre } });
   };
 
   return (

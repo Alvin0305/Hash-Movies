@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../auth.css";
 import * as api from "../../../../api";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../../../../context/UserContext";
 
 const RegisterPage = () => {
   const [email, setEmail] = useState("");
@@ -9,6 +10,8 @@ const RegisterPage = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
+
+  const { setUser } = useUser();
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -21,9 +24,11 @@ const RegisterPage = () => {
       const responce = await api.register(credentials);
       console.log(responce);
       console.log("Registration successful", responce.data.user);
-      navigate("/home", { state: { user: responce.data.user } });
+      setUser(responce.data.user);
+      navigate("/home");
     } catch (err) {
       console.log("register error", err);
+      toast.error("failed to register");
     }
   };
 

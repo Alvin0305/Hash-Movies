@@ -40,13 +40,13 @@ exports.createReview = async (req, res) => {
       dislikes: 0,
     };
 
-    console.log("newReview", responseReview);
-
-    await newReview.save();
+    const newRev = await newReview.save();
+    newRev.user = userExists;
+    console.log("newReview", newRev);
 
     await updateMovieRating(movie);
 
-    res.status(201).json(responseReview);
+    res.status(201).json(newRev);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -156,6 +156,7 @@ exports.updateReview = async (req, res) => {
 
 // Delete a review
 exports.deleteReview = async (req, res) => {
+  console.log("deleting review: " + req.params.id);
   try {
     const review = await Review.findByIdAndDelete(req.params.id);
 
@@ -163,11 +164,9 @@ exports.deleteReview = async (req, res) => {
       return res.status(404).json({ error: "Review not found" });
     }
 
-    // Update movie's average rating
-    await updateMovieRating(review.movie);
-
     res.json({ message: "Review deleted successfully" });
   } catch (err) {
+    console.log(err);
     res.status(500).json({ error: err.message });
   }
 };

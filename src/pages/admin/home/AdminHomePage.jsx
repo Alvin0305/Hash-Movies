@@ -9,6 +9,7 @@ import Dashboard from "../dashboard/Dashboard";
 import { useLocation } from "react-router-dom";
 import LoadingPage from "../../user/loading/LoadingPage";
 import ForbiddenPage from "../forbidden/ForbiddenPage";
+import { useUser } from "../../../context/UserContext";
 
 const AdminHomePage = () => {
   const userRef = useRef(null);
@@ -18,7 +19,6 @@ const AdminHomePage = () => {
   const actorRef = useRef(null);
 
   const location = useLocation();
-  const { user } = location.state || {};
 
   const scrollToUsers = () => {
     userRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -36,6 +36,8 @@ const AdminHomePage = () => {
     actorRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const { user } = useUser();
+
   if (!user) return <ForbiddenPage />;
   if (user.role !== "admin") return <ForbiddenPage />;
 
@@ -50,19 +52,19 @@ const AdminHomePage = () => {
       />
       <div className="admin-home-content">
         <div ref={userRef}>
-          <Users user={user}/>
+          <Users />
         </div>
         <div ref={movieRef}>
-          <Movies user={user}/>
+          <Movies />
         </div>
         <div ref={genreRef}>
-          <Genres user={user}/>
+          <Genres />
         </div>
         <div ref={platformRef}>
-          <Platforms user={user}/>
+          <Platforms />
         </div>
         <div ref={actorRef}>
-          <Actors user={user}/>
+          <Actors />
         </div>
       </div>
     </div>

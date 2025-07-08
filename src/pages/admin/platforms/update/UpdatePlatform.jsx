@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const UpdatePlatform = () => {
   const location = useLocation();
-  const { platform, user } = location.state || {};
+  const { platform } = location.state || {};
 
   const [formData, setFormData] = useState({
     name: platform.name,
@@ -39,7 +39,7 @@ const UpdatePlatform = () => {
     try {
       const response = await api.updatePlatform(platform._id, data);
       console.log("response:", response.data);
-        navigate("/admin/home", { state: { user: user } });
+      navigate("/admin/home");
     } catch (error) {
       console.error("Error creating platform:", error);
       if (error.response) {
@@ -57,11 +57,7 @@ const UpdatePlatform = () => {
     <div className="add-genre-page">
       <form action="" className="add-genre-page-wrapper">
         <div className="add-genre-image-div">
-          <img
-            src={`/backend/${platform.logo}`}
-            alt="No internet"
-            width={300}
-          />
+          <img src={`${platform.logo}`} alt="No internet" width={300} />
         </div>
         <div className="add-genre-content-div">
           <div className="add-genre-label-div">
@@ -93,7 +89,7 @@ const UpdatePlatform = () => {
               className="add-genre-button add-genre-cancel-button"
               onClick={(e) => {
                 e.preventDefault();
-                navigate("/admin/home", { state: { user: user } });
+                navigate("/admin/home");
               }}
             >
               CANCEL

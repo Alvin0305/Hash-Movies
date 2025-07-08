@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import UserGenre from "./UserGenre";
 
-const UserGenres = ({ genres, user }) => {
+const UserGenres = ({ genres }) => {
   return (
     <div>
       {genres.map((genre, index) => (
-        <UserGenre genre={genre} key={index} user={user} />
+        <UserGenre genre={genre} key={index} />
       ))}
     </div>
   );

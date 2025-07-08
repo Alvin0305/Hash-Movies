@@ -7,10 +7,10 @@ import Language from "./components/Language";
 import Genre from "./components/Genre";
 import { useLocation, useNavigate } from "react-router-dom";
 import ScrollPane from "../home/utils/ScrollPane";
+import { useUser } from "../../../context/UserContext";
 
 const UserPage = () => {
-  const location = useLocation();
-  const { user } = location.state || {};
+  const { user } = useUser();
 
   const [userData, setUserData] = useState({});
   const [loading, setLoading] = useState(true);

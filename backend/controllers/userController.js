@@ -33,9 +33,14 @@ exports.loginUser = async (req, res) => {
     if (!user) {
       return res.status(401).json({ error: "Invalid email or username" });
     }
-    if (!(await user.comparePassword(password))) {
+    const isMatch = await user.comparePassword(password);
+    console.log("Password match: ", isMatch);
+    console.log("Raw password:", password);
+    console.log("Hashed password in DB:", user.password);
+
+    if (!isMatch) {
       return res
-        .status(401)
+        .status(403)
         .json({ error: "Invalid password for the given email/username" });
     }
     const token = jwt.sign({ userId: user._id, role: user.role }, JWT_SECRET, {

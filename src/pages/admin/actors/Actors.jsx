@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import * as api from "../../../api";
 import { useNavigate } from "react-router-dom";
 
-const Actors = ({ user }) => {
+const Actors = () => {
   const [actors, setActors] = useState([]);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
 
@@ -108,7 +108,7 @@ const Actors = ({ user }) => {
                   className="table-button table-update-button"
                   onClick={() =>
                     navigate("/admin/actor/update", {
-                      state: { actor: actor, user: user },
+                      state: { actor },
                     })
                   }
                 >
@@ -131,7 +131,7 @@ const Actors = ({ user }) => {
         className="admin-add-button"
         onClick={(e) => {
           e.preventDefault();
-          navigate("/admin/actor/add", { state: { user: user } });
+          navigate("/admin/actor/add");
         }}
       >
         +

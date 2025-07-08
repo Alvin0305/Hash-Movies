@@ -1,12 +1,14 @@
-import React from 'react'
-import MovieTile from '../components/MovieTile'
+import React from "react";
+import MovieTile from "../components/MovieTile";
 
-const FlowPane = ({ movies, user }) => {
+const FlowPane = ({ movies }) => {
   return (
-    <div className='flow-pane'>
-      {movies.map((movie, index) => (<MovieTile movie={movie} key={index} user={user}/>))}
+    <div className="flow-pane">
+      {movies.map((movie, index) => (
+        <MovieTile movie={movie} key={index} />
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default FlowPane
+export default FlowPane;

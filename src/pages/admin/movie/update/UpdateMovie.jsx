@@ -7,7 +7,7 @@ import Genre from "../../../user/user/components/Genre";
 
 const UpdateMovie = () => {
   const location = useLocation();
-  const { movie, user } = location.state || {};
+  const { movie } = location.state || {};
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -228,7 +228,7 @@ const UpdateMovie = () => {
         const response = await api.updateMovie(movie._id, movieData);
         console.log(response.data);
 
-        navigate("/admin/home", { state: { user: user } });
+        navigate("/admin/home");
       } catch (err) {
         console.log("movie update error", err);
       }
@@ -244,7 +244,7 @@ const UpdateMovie = () => {
         <form className="update-movie-page-wrapper">
           <div className="update-movie-image-div">
             <img
-              src={`/backend/${movie.image}`}
+              src={`${movie.image}`}
               alt="No internet"
               width={300}
               className="update-movie-image"
@@ -453,7 +453,7 @@ const UpdateMovie = () => {
                   className="update-movie-cancel-button"
                   onClick={(e) => {
                     e.preventDefault();
-                    navigate("/admin/home", { state: { user: user } });
+                    navigate("/admin/home");
                   }}
                 >
                   CANCEL

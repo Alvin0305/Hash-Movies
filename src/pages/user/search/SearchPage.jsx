@@ -13,7 +13,6 @@ const SearchPage = () => {
   const [movies, setMovies] = useState([]);
 
   const location = useLocation();
-  const { user } = location.state || {};
 
   const [allGenres, setAllGenres] = useState([]);
   const [allPlatforms, setAllPlatforms] = useState([]);
@@ -263,7 +262,7 @@ const SearchPage = () => {
             )}
           </div>
           <div className="search-page-movies">
-            <FlowPane movies={movies} user={user} />
+            <FlowPane movies={movies} />
           </div>
         </div>
       </form>

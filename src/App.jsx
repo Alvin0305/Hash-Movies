@@ -23,10 +23,13 @@ import AddActor from "./pages/admin/actors/add/AddActor";
 import UpdateActor from "./pages/admin/actors/update/UpdateActor";
 import ActorPage from "./pages/user/actor/ActorPage";
 import ForbiddenPage from "./pages/admin/forbidden/ForbiddenPage";
+import { ToastContainer } from "react-toastify";
+import { UserProvider } from "./context/UserContext";
 
 function App() {
   return (
-    <AuthProvider>
+    <UserProvider>
+      <ToastContainer position="top-right" autoClose={3000} />
       <Router>
         <Routes>
           <Route path="/" element={<RegisterPage />} />
@@ -51,10 +54,10 @@ function App() {
           <Route path="/admin/platform/update" element={<UpdatePlatform />} />
           <Route path="/admin/actor/add" element={<AddActor />} />
           <Route path="/admin/actor/update" element={<UpdateActor />} />
-          <Route path="/forbidden" element={<ForbiddenPage />}/>
+          <Route path="/forbidden" element={<ForbiddenPage />} />
         </Routes>
       </Router>
-    </AuthProvider>
+    </UserProvider>
   );
 }
 

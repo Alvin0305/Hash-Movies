@@ -11,8 +11,6 @@ const AddGenre = () => {
     movies: [],
   });
 
-  const location = useLocation();
-  const { user } = location.state || {};
   const [file, setFile] = useState(null);
   const navigate = useNavigate();
 
@@ -37,7 +35,7 @@ const AddGenre = () => {
     try {
       const response = await api.createGenre(data);
       console.log("response:", response.data);
-      navigate("/admin/home", { state: { user: user } });
+      navigate("/admin/home");
     } catch (error) {
       console.error("Error creating genre:", error);
       if (error.response) {
@@ -94,7 +92,7 @@ const AddGenre = () => {
               className="add-genre-button add-genre-cancel-button"
               onClick={(e) => {
                 e.preventDefault();
-                navigate("/admin/home", { state: { user: user } });
+                navigate("/admin/home");
               }}
             >
               CANCEL

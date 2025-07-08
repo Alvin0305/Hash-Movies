@@ -52,30 +52,26 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// --- Static Assets (Uploads from backend) ---
-// REMOVE THIS LINE as images are now served from Cloudinary:
-// app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
 // --- API Routes ---
 app.use("/api", routes);
 
 // --- Serve Frontend Static Files ---
-const frontendBuildPath = path.join(__dirname, "..", "dist");
-app.use(express.static(frontendBuildPath));
+// const frontendBuildPath = path.join(__dirname, "..", "dist");
+// app.use(express.static(frontendBuildPath));
 
 // --- Catch-all for Client-Side Routing ---
-app.get("*", (req, res) => {
-  const indexPath = path.join(frontendBuildPath, "index.html");
-  res.sendFile(indexPath, (err) => {
-    if (err) {
-      console.error(
-        `Error sending SPA fallback index.html for path ${req.path}:`,
-        err
-      );
-      res.status(500).send("Internal server error serving the application.");
-    }
-  });
-});
+// app.get("*", (req, res) => {
+//   const indexPath = path.join(frontendBuildPath, "index.html");
+//   res.sendFile(indexPath, (err) => {
+//     if (err) {
+//       console.error(
+//         `Error sending SPA fallback index.html for path ${req.path}:`,
+//         err
+//       );
+//       res.status(500).send("Internal server error serving the application.");
+//     }
+//   });
+// });
 
 // --- Start Server ---
 const PORT = process.env.PORT || 5000;
