@@ -35,6 +35,7 @@ const allowedOrigins = [
   "http://localhost:3000",
   "https://hash-movies.onrender.com",
   "https://hash-movies-u14i.onrender.com",
+  "https://hash-movies.vercel.app",
 ];
 const corsOptions = {
   origin: function (origin, callback) {
